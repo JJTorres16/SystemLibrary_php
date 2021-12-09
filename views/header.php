@@ -24,19 +24,19 @@
                         <a class="nav-link active" aria-current="page" href="catalogo">Libros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="alumnos">Alumnos</a>
+                        <a class="nav-link" aria-current="page" href="alumno">Alumnos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"      data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown 
+                        Préstamos 
                         </a>                   
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Préstamos actuales</a></li>
-                            <li><a class="dropdown-item" href="#">Generar nuevo</a></li>
+                            <li><a class="dropdown-item" href="prestamo">Préstamos actuales</a></li>
+                            <li><a class="dropdown-item" href="nuevoPrestamo">Generar nuevo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ayuda" tabindex="-1" aria-disabled="true">Ayuda</a>
+                        <a class="nav-link" href="help" tabindex="-1" aria-disabled="true">Ayuda</a>
                     </li>
                 </ul>
             </div>
