@@ -10,10 +10,27 @@
 <body>
     <?php require 'views/header.php'; ?>
 
-    <div id="main">
-        <h2 class="center">Catálogo de libros</h2>
+    <br>
+    <div class="d-flex felx-row justify-content-center align-items-center">
+        <h1>Catálogo de libros</h1>
+    </div><br>
+      
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="d-flex">
+                    <input class="form-control" type="search" placeholder="Busca un libro" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                </div>                    
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-2">
+                    <br><a href="catalogo" class="btn" style="background-color:#8F3A84; color:white">Agrega nuevo libro</a>
+                </div>
+            </div>         
+        </div>
     </div>
     
-    <?php require 'views/footer.php'; ?>     
+    <?php //require 'views/footer.php'; ?>     
 </body>
 </html>
