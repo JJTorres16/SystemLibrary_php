@@ -30,6 +30,43 @@
             </div>         
         </div>
     </div>
+
+    <div class="container" style="margin-top:50px; margin-bottom:50px; margin-left:125px">
+        <div class="row justify-content-center">
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>    
+    </div>
     
     <?php //require 'views/footer.php'; ?>     
 </body>
