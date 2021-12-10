@@ -9,7 +9,7 @@
 <body>
     <?php require 'views/header.php' ?>
 
-    <h1>Agregar Libros</h1>
+    <h1>Agregar Prestamo</h1>
 
     <?php require 'views/footer.php' ?>
 </body>

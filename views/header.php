@@ -13,7 +13,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #713269">
         <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="main">BIBLIOTECA</a>
+            <a class="navbar-brand mb-0 h1" href="/SystemLibrary">BIBLIOTECA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navegacion"       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,7 +32,7 @@
                         </a>                   
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="prestamo">Préstamos actuales</a></li>
-                            <li><a class="dropdown-item" href="nuevoPrestamo">Generar nuevo</a></li>
+                            <li><a class="dropdown-item" href="prestamo/add">Generar nuevo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

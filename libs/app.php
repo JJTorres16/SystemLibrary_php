@@ -18,7 +18,16 @@ require_once 'controllers/error.php';
            $controller = new $url[0];
 
            if(isset($url[1])){
-               $controller -> {$url[1]}(); // Con los paréntesis se transforma esta línea a un método
+               if ($url[1] == 'add'){
+                   $controller -> irVistaAdd();
+
+               } elseif ($url[1] == 'edit'){
+                   $controller -> irVistaEdit();
+
+               } 
+
+           } else {
+               $controller -> irVistaMain();
            }
 
         } else {       

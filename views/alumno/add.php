@@ -7,12 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <?php require 'views/header.php' ?>
 
-    <?php require_once 'views/header.php' ?>
+    <h1>Agregar Alumno</h1>
 
-    <h2>Nuevo Préstamo</h2>
-
-    <?php require_once 'views/footer.php' ?>
-    
+    <?php require 'views/footer.php' ?>
 </body>
 </html>
