@@ -10,9 +10,11 @@
 <body>
     <?php require 'views/header.php'; ?>
 
-    <br>
+    <div class="d-flex felx-row justify-content-center align-items-center" style="margin-top:50px">
+        <h1>Catálogo de libros</h1><br>
+    </div>
     <div class="d-flex felx-row justify-content-center align-items-center">
-        <h1>Catálogo de libros</h1>
+            <small class="text-muted">Edita libros o añade nuevos al sotck</small>
     </div><br>
       
     <div class="container">
@@ -31,9 +33,41 @@
         </div>
     </div>
 
-    <div class="container" style="margin-top:50px; margin-bottom:50px; margin-left:125px">
+    <div class="container" style="margin-top:25px; margin-left:125px">
         <div class="row justify-content-center">
-            <div class="row">
+            <div class="row" style="margin-top:25px; margin-bottom:25px;">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Túneles</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            <div class="row" style="margin-top:25px; margin-bottom:25px;">
                 <div class="col">
                     <div class="card" style="width: 18rem;">
                         <img src="..." class="card-img-top" alt="">
