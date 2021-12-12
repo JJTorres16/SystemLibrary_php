@@ -10,8 +10,8 @@
     <?php require 'views/header.php' ?>
 
     <div class="container" style="margin-top:50px;">
-        <h2>Alta de alumnos</h2>
-        <small class="text-muted">Agrega alumnos que pueden sacar libros</small>    
+        <h2>Edición de alumnos</h2>
+        <small class="text-muted">Modifica los datos de los alumnos</small>    
     </div><br>
 
     <div class="container" style="margin-top:15px;">

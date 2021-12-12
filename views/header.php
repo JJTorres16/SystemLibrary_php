@@ -32,7 +32,7 @@
                         </a>                   
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/SystemLibrary/prestamo">Préstamos actuales</a></li>
-                            <li><a class="dropdown-item" href="prestamo/add">Generar nuevo</a></li>
+                            <li><a class="dropdown-item" href="/SystemLibrary/prestamo/add">Generar nuevo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
