@@ -21,19 +21,13 @@
             <div class="collapse navbar-collapse" id="Navegacion">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/SystemLibrary/catalogo">Libros</a>
+                        <a class="nav-link active" aria-current="page" href="/SystemLibrary/catalogo">Catálogo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/SystemLibrary/alumno">Alumnos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Préstamos 
-                        </a>                   
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/SystemLibrary/prestamo">Préstamos actuales</a></li>
-                            <li><a class="dropdown-item" href="/SystemLibrary/prestamo/add">Generar nuevo</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/SystemLibrary/prestamo">Préstamos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/SystemLibrary/help" tabindex="-1" aria-disabled="true">Ayuda</a>

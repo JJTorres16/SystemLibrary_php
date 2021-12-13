@@ -10,12 +10,16 @@
     <?php require 'views/header.php' ?>
 
     <div class="container" style="margin-top:50px;">
-        <h2>Edición de alumnos</h2>
+        <h2>Edición de datos del alumnos</h2>
         <small class="text-muted">Modifica los datos de los alumnos</small>    
     </div><br>
 
     <div class="container" style="margin-top:15px;">
         <form action="/SystemLibrary/alumno" class="row g-3">
+            <div class="col-sm-11"></div>
+            <div class="col-sm-1">
+                <a class="btn btn-danger btn-sm" href="/SystemLibrary/catalogo">Eliminar</a>
+            </div>
             <div class="col-md-4">
                 <label for="txtPaternoAlumno" class="form-label">Apellido Paterno:</label>
                 <input type="text" class="form-control" id="txtPaternoAlumno" name="txtPaternoAlumno" required >
@@ -77,8 +81,8 @@
                     <span><br></span>
                 </div>
                 <div>
-                    <button class="btn btn-success" type="submit">Dar de alta</button>
-                    <a class="btn btn-danger" href="/SystemLibrary/alumno">Cancelar</a>
+                    <button class="btn btn-success" type="submit">Modificar</button>
+                    <a class="btn btn-warning" href="/SystemLibrary/alumno">Cancelar</a>
                 </div>
             </div>
         </form>

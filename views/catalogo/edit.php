@@ -11,12 +11,16 @@
     <?php require 'views/header.php' ?>
 
     <div class="container" style="margin-top:50px;">
-        <h2>Edición de libros</h2>
-        <small class="text-muted">Haz las correcciones necesarias</small>    
+        <h2>Edición de material bibligráfico</h2>
+        <small class="text-muted">Edita o elimina libros del stock</small>    
     </div><br>
 
-    <div class="container" style="margin-top:15px;">
+    <div class="container" style="margin-top:0px;">
         <form action="/SystemLibrary/catalogo" class="row g-3" method="post">
+            <div class="col-sm-11"></div>
+            <div class="col-sm-1">
+                <a class="btn btn-danger btn-sm" href="/SystemLibrary/catalogo">Eliminar</a>
+            </div>
             <div class="col-md-4">
                 <label for="txtNameBook" class="form-label">Nombre del libro:</label>
                 <input type="text" class="form-control" id="txtNameBook" name="txtNameBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{5,50}" required>
@@ -92,7 +96,7 @@
             <div class="col-12">
                 <span></span>
                 <button class="btn btn-success" type="submit">Modificar</button> 
-                <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
+                <a class="btn btn-warning" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
         </form>
     </div>    

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--link rel="stylesheet" href="public/css/default.css"-->
-    <title>Document</title>
+    <title>Catálogo de Libros</title>
 </head>
 <body>
     <?php require 'views/header.php'; ?>
@@ -40,10 +40,10 @@
                     <div class="card" style="width: 18rem;">
                         <img src="..." class="card-img-top" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Túneles</h5>
+                            <h5 class="card-title">Túneles <a href="catalogo/edit" class="btn btn-primary btn-sm">Editar</a></h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="catalogo/edit" class="btn btn-primary">Editar</a>
-                            <a href="catalogo/borrar" class="btn btn-danger">Borrar</a>
+                            <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
+                            <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
                         </div>
                     </div>
                 </div>       

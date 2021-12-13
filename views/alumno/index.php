@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listado de alumnos</title>
 </head>
 <body>
 
@@ -51,7 +51,7 @@
                     <td>272-131-56-60</td>
                     <td>
                         <a href="alumno/edit" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-outline-danger btn-sm">Borrar</a>
+                        <a href="#" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                     <td>272-572-27-48</td>
                     <td>
                         <a href="alumno/edit" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-outline-danger btn-sm">Borrar</a>
+                        <a href="#" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
             </tbody>
