@@ -16,6 +16,10 @@ class Prestamo extends Controller{
     function irVistaEdit(){
         $this->view->render('prestamo/edit');
     }
+
+    function irVistaDetail(){
+        $this->view->render('prestamo/detail');
+    }
 }
 
 ?>

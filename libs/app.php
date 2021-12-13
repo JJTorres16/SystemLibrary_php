@@ -24,7 +24,10 @@ require_once 'controllers/error.php';
                } elseif ($url[1] == 'edit'){
                    $controller -> irVistaEdit();
 
-               } 
+               } elseif($url[1] == 'detail'){
+                    $controller -> irVistaDetail();
+
+               }
 
            } else {
                $controller -> irVistaMain();

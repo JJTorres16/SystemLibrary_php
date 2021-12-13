@@ -68,8 +68,12 @@
             <div class="col-md-4">
                 <label for="txtCategoryBook" class="form-label">Categoria</label>
                 <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="txtCategoryBook" name="txtCategoryBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}" required>
-                    <span class="input-group-text" id="inputGroupPrepend"><a href="" style="text-decoration:none; color:#413C41">Agregar</a></span>
+                    <select type="text" class="form-control" id="txtCategoryBook" name="txtCategoryBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}" required>
+                        <option value="Fantasia">Literatura/Fantasia</option>
+                    </select>
+                    <span class="input-group-text" id="inputGroupPrepend">
+                        <a href="" style="text-decoration:none; color:#413C41" data-bs-toggle="modal" data-bs-target="#agregaCategoria">Agregar</a>
+                    </span>
                 </div>    
             </div>
             <div class="col-md-2">
@@ -94,8 +98,37 @@
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
         </form>
-    </div>    
+    </div>
 
+
+
+<!-- Modal para agregar una nueva categoria-->
+<div class="modal fade" id="agregaCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="agregaCategoriaHeader">Nueva Categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="container">                
+            <form action="/SystemLibrary/catalogo/add" class="row g-3" method="post">
+                <div class="modal-body">
+                    <div class="col-12">
+                        <label for="txtTotalBook" class="form-label">Nombre de la nueva categoria:</label>
+                        <input type="text" class="form-control" id="txtTotalBook" name="txtTotalBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}" required>
+                    </div> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>                
+    </div>
+  </div>
+</div>
+    
+    
     <?php //require 'views/footer.php' ?>
 </body>
     <script src="../public/js-own/preview-image.js"></script>

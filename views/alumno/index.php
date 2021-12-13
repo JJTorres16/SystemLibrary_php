@@ -50,8 +50,8 @@
                     <td>juliantv_416@outlook.com</td>
                     <td>272-131-56-60</td>
                     <td>
-                        <a href="alumno/edit" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-outline-success btn-sm">Historial</a>
+                        <a href="alumno/edit?NoCon=15010830" class="btn btn-outline-primary btn-sm">Editar</a>
+                        <a href="/SystemLibrary/prestamo/detail?NoCon=15010878" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
                 <tr>
@@ -61,8 +61,8 @@
                     <td>samantha.vj20@gmail.com</td>
                     <td>272-572-27-48</td>
                     <td>
-                        <a href="alumno/edit" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-outline-success btn-sm">Historial</a>
+                        <a href="alumno/edit?NoCon=15010830" class="btn btn-outline-primary btn-sm">Editar</a>
+                        <a href="/SystemLibrary/prestamo/detail?NoCon=15010830" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
             </tbody>

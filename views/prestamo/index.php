@@ -41,7 +41,7 @@
                         Préstamos en curso
                     </button>
                 </h2>
-                <div id="prestamosEnCurso" class="accordion-collapse collapse show" arial-labelledby="headerEnCurso" data-bs-parent="#accordionPrestamos">
+                <div id="prestamosEnCurso" class="accordion-collapse collapse" arial-labelledby="headerEnCurso" data-bs-parent="#accordionPrestamos">
                     <div class="container" style="margin-top:25px;">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -89,7 +89,7 @@
                         Historial de préstamos
                     </button>
                 </h2>
-                <div id="prestamosHistorial" class="accordion-collapse collapse show" arial-labelledby="headerHistorial" data-bs-parent="#accordionPrestamos">
+                <div id="prestamosHistorial" class="accordion-collapse collapse" arial-labelledby="headerHistorial" data-bs-parent="#accordionPrestamos">
                     <div class="container" style="margin-top:25px;">
                         <table class="table table-striped table-hover">
                             <thead>
