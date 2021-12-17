@@ -27,7 +27,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-2">
-                    <br><a href="catalogo/add" class="btn" style="background-color:#8F3A84; color:white">Agrega nuevo libro</a>
+                    <br><a href="/SystemLibrary/catalogo/add" class="btn" style="background-color:#8F3A84; color:white">Agrega nuevo libro</a>
                 </div>
             </div>         
         </div>

@@ -15,7 +15,7 @@
     </div><br>
 
     <div class="container" style="margin-top:15px;">
-        <form action="/SystemLibrary/catalogo" class="row g-3" method="post">
+        <form action="/SystemLibrary/catalogo/agregar" class="row g-3" method="post" enctype="multipart/form-data">
             <div class="col-md-4">
                 <label for="txtNameBook" class="form-label">Nombre del libro:</label>
                 <input type="text" class="form-control" id="txtNameBook" name="txtNameBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{5,50}" required>
@@ -94,7 +94,7 @@
             </div><br>
             <div class="col-12">
                 <span></span>
-                <button class="btn btn-success" type="submit">Agregar</button> 
+                <button class="btn btn-success" type="submit" name="agregar">Agregar</button> 
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
         </form>
