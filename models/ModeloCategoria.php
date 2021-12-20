@@ -13,7 +13,7 @@
         }
 
         function getId(){
-            return $id;
+            return $this->id;
         }
 
         // Categoria
@@ -22,7 +22,7 @@
         }
 
         function getCategoria(){
-            return $categoria;
+            return $this->categoria;
         }
     }
 

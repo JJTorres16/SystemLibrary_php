@@ -10,6 +10,7 @@ class Controller{
         Conexion::conexionBD();
 
     }
+
 }
 
 ?>

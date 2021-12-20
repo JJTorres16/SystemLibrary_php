@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php require 'views/header.php' ?>
+    <?php require 'controllers/categoria.php' ?>
 
     <div class="container" style="margin-top:50px;">
         <h2>Alta de material bibliográfico</h2>
@@ -69,12 +70,29 @@
                 <label for="txtCategoryBook" class="form-label">Categoria</label>
                 <div class="input-group has-validation">
                     <select type="text" class="form-control" id="txtCategoryBook" name="txtCategoryBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}" required>
-                        <option value="Fantasia">Literatura/Fantasia</option>
+
+                    <?php
+                        
+                        $contCategoria = new Categoria(); // Controlador de las categorias
+                        $categorias = $contCategoria->showAll();
+                
+                        foreach($categorias as $row){
+    
+                    ?>
+
+                            <option value="<?php echo $row->getId() ?>"><?php echo $row->getCategoria() ?></option>
+
+                    <?php } ?>
+
                     </select>
                     <span class="input-group-text" id="inputGroupPrepend">
                         <a href="" style="text-decoration:none; color:#413C41" data-bs-toggle="modal" data-bs-target="#agregaCategoria">Agregar</a>
                     </span>
                 </div>    
+            </div>
+            <div class="col-md-4">
+                <label for="txtEditorialBook" class="form-label">Editorial</label>
+                <input type="text" class="form-control" id="txtEditorialBook" name="txtEditorialBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{1,50}" required>
             </div>
             <div class="col-md-2">
                 <label for="txtPagesBook" class="form-label">Número de Páginas:</label>
@@ -85,18 +103,21 @@
                 <input type="text" class="form-control" id="txtTotalBook" name="txtTotalBook" pattern="[0-9]{1,10}" required>
             </div>
             <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
                 <label for="fileImageBook" class="form-label">Portada:</label>
                 <input type="file" accept="image/*" class="form-control" id="fileImageBook" name="fileImageBook" required><br>
                 <!-- Se previsualiza la imágen -->
                 <img src="" id="imgPortadaLibro" style="max-width:150px">
-            </div><br>
+            </div>
+            <div class="col-8">
+                <label for="txtAreaSinposis" class="form-label">Sinpósis:</label>
+                <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{10,50}"></textarea>
+            </div>
             <div class="col-12">
                 <span></span>
                 <button class="btn btn-success" type="submit" name="agregar">Agregar</button> 
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
+            <div class="col-12"></div>
         </form>
     </div>
 

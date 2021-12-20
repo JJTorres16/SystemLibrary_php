@@ -1,7 +1,7 @@
 <?php
 
-require_once 'models/ModeloCatalogo.php';
-require_once 'modelDAO/CatalogoDAO.php';
+require_once ('models/ModeloCatalogo.php');
+require_once ('modelDAO/CatalogoDAO.php');
 
 class Catalogo extends Controller {
 
@@ -41,6 +41,8 @@ class Catalogo extends Controller {
             $category = $_POST['txtCategoryBook'];
             $totalPages = $_POST['txtPagesBook'];
             $quantity = $_POST['txtTotalBook'];
+            $sinopsis = $_POST['txtAreaSinposis'];
+            $editorial = $_POST['txtEditorialBook'];
             
             // Lectura de la imagen
             $coverName = $_FILES['fileImageBook']['name'];
@@ -63,6 +65,8 @@ class Catalogo extends Controller {
             $modelCat->setCategoria($category);
             $modelCat->setPaginas($totalPages);
             $modelCat->setCantidad($quantity);
+            $modelCat->setSinopsis($sinopsis);
+            $modelCat->setEditorial($editorial);
             $modelCat->setPortada($rute);
             
             //Se pasa el nuevo objeto al objeto DAO para ejecutar la función:

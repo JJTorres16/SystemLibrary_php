@@ -14,6 +14,7 @@
         private $cantidad;
         private $autor;
         private $categoria;
+        private $sinopsis;
 
         //Fucniones getter y setter
 
@@ -23,16 +24,16 @@
         }
 
         function getLibros(){
-            return $idLibros;
+            return $this->idLibros;
         }
 
         //Portada
-        function setPortada($portada){ // <- Pendiente
+        function setPortada($portada){
             $this->portada = $portada;
         }
 
-        function getPortada(){ // <- Pendiente
-            return $portada;
+        function getPortada(){
+            return $this->portada;
         }
 
         //Nombre
@@ -41,7 +42,7 @@
         }
 
         function getNombre(){
-            return $nombre;
+            return $this->nombre;
         }
 
         //ISBN
@@ -50,7 +51,7 @@
         }
 
         function getISBN(){
-            return $isbn;
+            return $this->isbn;
         }
 
         //Edición
@@ -59,7 +60,7 @@
         }
 
         function getEdicion(){
-            return $edicion;
+            return $this->edicion;
         }
 
         //Formato
@@ -68,7 +69,7 @@
         }
 
         function getFormato(){
-            return $formato;
+            return $this->formato;
         }
 
         //Idioma
@@ -77,7 +78,7 @@
         }
 
         function getIdioma(){
-            return $idioma;
+            return $this->idioma;
         }
 
         //Número de Páginas
@@ -86,7 +87,7 @@
         }
 
         function getPaginas(){
-            return $noPaginas;
+            return $this->noPaginas;
         }
 
         //Año
@@ -95,7 +96,7 @@
         }
 
         function getAnio(){
-            return $anio;
+            return $this->anio;
         }
 
         //Cantidad
@@ -104,7 +105,7 @@
         }
 
         function getCantidad(){
-            return $cantidad;
+            return $this->cantidad;
         }
 
         //Autor
@@ -113,7 +114,7 @@
         }
 
         function getAutor(){
-            return $autor;
+            return $this->autor;
         }
 
         //Categoria
@@ -121,8 +122,26 @@
             $this->categoria = $categoria;
         }
 
-        function getCatetoria(){
-            return $categoria;
+        function getCategoria(){
+            return $this->categoria;
+        }
+
+        //Sinópsis
+        function setSinopsis($sinopsis){
+            $this->sinopsis = $sinopsis;
+        }
+
+        function getSinopsis(){
+            return $this->sinopsis;
+        }
+
+        //Editorial
+        function setEditorial($editorial){
+            $this->editorial = $editorial;
+        }
+
+        function getEditorial(){
+            return $this->editorial;
         }
     }
 
