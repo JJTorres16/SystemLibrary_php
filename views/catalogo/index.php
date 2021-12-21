@@ -9,6 +9,7 @@
 </head>
 <body>
     <?php require 'views/header.php'; ?>
+    <?//php require 'controllers/catalogo.php' ?>
 
     <div class="d-flex felx-row justify-content-center align-items-center" style="margin-top:50px">
         <h1>Catálogo de libros</h1><br>
@@ -33,23 +34,42 @@
         </div>
     </div>
 
+    <?php
+
+        $conCatalogo = new Catalogo();
+        $catalogo = $conCatalogo->showAll();
+
+        foreach($catalogo as $row) {
+        $ruteCover = "./".$row->getPortada();
+    ?>
+
     <div class="container" style="margin-top:25px; margin-left:125px">
         <div class="row justify-content-center">
             <div class="row" style="margin-top:25px; margin-bottom:25px;">
+            <?php for($i = 0; $i<3; $i++){ ?>
                 <div class="col">
                     <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="">
+                        <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Túneles <a href="catalogo/edit" class="btn btn-primary btn-sm">Editar</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title"><?php echo $row->getNombre() ?> <a href="catalogo/edit" class="btn btn-primary btn-sm">Editar</a></h5>
+                            <!--p class="card-text"><?php echo $row->getSinopsis() ?></p--> 
+                            <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
+                            <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
                             <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
                             <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
                         </div>
                     </div>
-                </div>       
+                </div>
+                <?php } ?>        
             </div>
         </div>    
     </div>
+
+    <?php
+    
+        }
+
+    ?>
     
     <?php //require 'views/footer.php'; ?>     
 </body>

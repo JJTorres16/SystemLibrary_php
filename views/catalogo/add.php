@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../public/js-own/formularios.js"></script>
     <title>Alta de libros</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
     </div><br>
 
     <div class="container" style="margin-top:15px;">
-        <form action="/SystemLibrary/catalogo/agregar" class="row g-3" method="post" enctype="multipart/form-data">
+        <form action="/SystemLibrary/catalogo/agregar" class="row g-3" method="post" enctype="multipart/form-data" id="formAltaLibro" name="formAltaLibro" onsubmit="return confirmaIngreso(this);" >
             <div class="col-md-4">
                 <label for="txtNameBook" class="form-label">Nombre del libro:</label>
                 <input type="text" class="form-control" id="txtNameBook" name="txtNameBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{5,50}" required>
@@ -114,7 +115,7 @@
             </div>
             <div class="col-12">
                 <span></span>
-                <button class="btn btn-success" type="submit" name="agregar">Agregar</button> 
+                <button class="btn btn-success" name="agregar" type="submit">Agregar</button> 
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
             <div class="col-12"></div>
@@ -150,7 +151,7 @@
 </div>
     
     
-    <?php //require 'views/footer.php' ?>
-</body>
+    <?php //require 'views/footer.php' ?>                           
     <script src="../public/js-own/preview-image.js"></script>
+</body>
 </html>

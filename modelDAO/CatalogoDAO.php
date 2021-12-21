@@ -1,7 +1,7 @@
 <?php
 
 require_once('libs/model.php');
-require_once('models/ModeloCatalogo.php');
+//require_once('models/ModeloCatalogo.php');
 
 class CatalogoDAO extends Model{
 
@@ -33,7 +33,10 @@ class CatalogoDAO extends Model{
     }
     
     function show(){
-        
+
+        $query = "SELECT * FROM libros";
+
+        return parent::getConnection()->query($query);
     }
 }
 

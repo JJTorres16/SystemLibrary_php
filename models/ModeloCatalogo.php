@@ -23,7 +23,7 @@
             $this->idLibros = $idLibros;
         }
 
-        function getLibros(){
+        function getidLibros(){
             return $this->idLibros;
         }
 

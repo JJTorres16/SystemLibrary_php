@@ -28,9 +28,10 @@ class Catalogo extends Controller {
     function Agregar(){
         $modelCat = new ModeloCatalogo();
         $catDAO = new CatalogoDAO();
+        $countEmptys = 0;
         
         //Variables del nuevo libro
-        if(isset($_REQUEST['agregar'])){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $nameBook = $_POST['txtNameBook'];
             $nameAuthor = $_POST['txtAuthorBook'];
             $ISBN = $_POST['txtISBNBook'];
@@ -72,9 +73,38 @@ class Catalogo extends Controller {
             //Se pasa el nuevo objeto al objeto DAO para ejecutar la función:
             $catDAO->add($modelCat);
 
+            header('Location: /SystemLibrary/catalogo');
         }
         
-        $this->view->render('catalogo/index');
+        //$this->view->render('catalogo/index');
+    }
+
+    function showAll(){
+
+        $listaCatalogo = array();
+        $catalogoDAO = new CatalogoDAO();
+
+        $queryCatalogo = $catalogoDAO->show();
+
+        foreach($queryCatalogo as $row){
+            $modelCat = new ModeloCatalogo();
+            $modelCat->setidLibros($row['idlibros']);
+            $modelCat->setNombre($row['nombre']);
+            $modelCat->setAutor($row['autor']);
+            $modelCat->setFormato($row['formato']);
+            $modelCat->setIdioma($row['idioma']);
+            $modelCat->setEdicion($row['edicion']);
+            $modelCat->setAnio($row['anio']);
+            $modelCat->setCategoria($row['categoria']);
+            $modelCat->setPaginas($row['nopaginas']);
+            $modelCat->setCantidad($row['cantidad']);
+            $modelCat->setSinopsis($row['sinopsis']);
+            $modelCat->setEditorial($row['editorial']);
+            $modelCat->setPortada($row['portada']);
+            array_push($listaCatalogo, $modelCat);
+        }
+
+        return $listaCatalogo;
     }
 }
 
