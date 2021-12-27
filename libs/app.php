@@ -28,7 +28,10 @@ require_once 'controllers/error.php';
                     $controller -> irVistaDetail();
 
                } elseif($url[1] == 'agregar'){
-                   $controller -> Agregar();
+                   $controller -> agregar();
+                   
+               } elseif($url[1] == 'editar'){
+                   $controller -> editar();
                }
 
            } else {

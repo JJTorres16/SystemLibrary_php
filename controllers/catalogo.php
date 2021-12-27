@@ -25,10 +25,9 @@ class Catalogo extends Controller {
         $this->view->render('catalogo/edit');
     }
 
-    function Agregar(){
+    function agregar(){
         $modelCat = new ModeloCatalogo();
         $catDAO = new CatalogoDAO();
-        $countEmptys = 0;
         
         //Variables del nuevo libro
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -72,9 +71,9 @@ class Catalogo extends Controller {
             
             //Se pasa el nuevo objeto al objeto DAO para ejecutar la función:
             $catDAO->add($modelCat);
-
-            header('Location: /SystemLibrary/catalogo');
         }
+
+        header('Location: /SystemLibrary/catalogo');
         
         //$this->view->render('catalogo/index');
     }
@@ -89,6 +88,7 @@ class Catalogo extends Controller {
         foreach($queryCatalogo as $row){
             $modelCat = new ModeloCatalogo();
             $modelCat->setidLibros($row['idlibros']);
+            $modelCat->setISBN($row['isbn']);
             $modelCat->setNombre($row['nombre']);
             $modelCat->setAutor($row['autor']);
             $modelCat->setFormato($row['formato']);
@@ -106,6 +106,79 @@ class Catalogo extends Controller {
 
         return $listaCatalogo;
     }
+
+    function showDetail($id){
+
+        $listaCatalogo = array();
+        $catalogoDAO = new CatalogoDAO();
+        $queyLibro = $catalogoDAO -> showDetail($id);
+
+        // Se empiza a llenar el objeto con la información del libro:
+        foreach($queyLibro as $row){
+            $modeloLibro = new ModeloCatalogo();
+            $modeloLibro -> setidLibros($row['idlibros']);
+            $modeloLibro->setISBN($row['isbn']);
+            $modeloLibro -> setNombre($row['nombre']);
+            $modeloLibro -> setAutor($row['autor']);
+            $modeloLibro -> setFormato($row['formato']);
+            $modeloLibro -> setIdioma($row['idioma']);
+            $modeloLibro -> setEdicion($row['edicion']);
+            $modeloLibro -> setAnio($row['anio']);
+            $modeloLibro -> setCategoria($row['categoria']);
+            $modeloLibro -> setPaginas($row['nopaginas']);
+            $modeloLibro -> setCantidad($row['cantidad']);
+            $modeloLibro -> setSinopsis($row['sinopsis']);
+            $modeloLibro -> setEditorial($row['editorial']);
+            $modeloLibro -> setPortada($row['portada']);
+            array_push($listaCatalogo, $modeloLibro);
+        }
+
+        return $listaCatalogo;
+    }
+
+         function editar(){
+
+             $modeloCatalogo = new ModeloCatalogo();
+             $catalogoDAO = new CatalogoDAO();
+
+
+             // Si se ha realizado un mehtdo POST
+             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $idLibro = $_POST['txtIdLibro'];
+                $nameBook = $_POST['txtNameBook'];
+                $nameAuthor = $_POST['txtAuthorBook'];
+                $ISBN = $_POST['txtISBNBook'];
+                $format = $_POST['txtFormatSelect'];
+                $lengauge = $_POST['txtLenguageBook'];
+                $edition = $_POST['txtEditionBook'];
+                $year = $_POST['txtYearBook'];
+                $category = $_POST['txtCategoryBook'];
+                $totalPages = $_POST['txtPagesBook'];
+                $quantity = $_POST['txtTotalBook'];
+                $sinopsis = $_POST['txtAreaSinposis'];
+                $editorial = $_POST['txtEditorialBook'];
+
+                $modeloCatalogo->setidLibros($idLibro);
+                $modeloCatalogo->setNombre($nameBook);
+                $modeloCatalogo->setAutor($nameAuthor);
+                $modeloCatalogo->setISBN($ISBN);
+                $modeloCatalogo->setFormato($format);
+                $modeloCatalogo->setIdioma($lengauge);
+                $modeloCatalogo->setEdicion($edition);
+                $modeloCatalogo->setAnio($year);
+                $modeloCatalogo->setCategoria($category);
+                $modeloCatalogo->setPaginas($totalPages);
+                $modeloCatalogo->setCantidad($quantity);
+                $modeloCatalogo->setSinopsis($sinopsis);
+                $modeloCatalogo->setEditorial($editorial);
+
+                 // Se manda al objeto DAO para ejecutar la función de UPDATE:
+                $catalogoDAO -> edit($modeloCatalogo);
+             }
+
+             header('Location: /SystemLibrary/catalogo');
+
+         }
 }
 
 ?>

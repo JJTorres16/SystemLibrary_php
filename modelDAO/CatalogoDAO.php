@@ -34,9 +34,37 @@ class CatalogoDAO extends Model{
     
     function show(){
 
-        $query = "SELECT * FROM libros";
-
+        $query = "SELECT * FROM libros ORDER BY nombre ASC";
         return parent::getConnection()->query($query);
+    }
+
+    function showDetail($id){
+
+        $query = "SELECT * FROM libros WHERE idlibros =" . $id . ";";
+        return parent::getConnection()->query($query);
+    }
+
+    function edit($catalogo){
+
+        $query = parent::getConnection()->prepare("UPDATE libros SET nombre = ?, autor = ?, isbn = ?, formato = ?, idioma = ?, edicion = ?, anio = ?, categoria = ?,
+                                                    nopaginas = ?, cantidad = ?, sinopsis = ?, editorial = ? WHERE idlibros = ?;");
+
+        $query -> execute(array(
+            $catalogo->getNombre(),
+            $catalogo->getAutor(),
+            $catalogo->getISBN(),
+            $catalogo->getFormato(),
+            $catalogo->getIdioma(),
+            $catalogo->getEdicion(),
+            $catalogo->getAnio(),
+            $catalogo->getCategoria(),
+            $catalogo->getPaginas(),
+            $catalogo->getCantidad(),
+            $catalogo->getSinopsis(),
+            $catalogo->getEditorial(),
+            $catalogo->getidLibros()
+        ));
+
     }
 }
 

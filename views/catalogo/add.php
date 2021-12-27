@@ -20,11 +20,11 @@
         <form action="/SystemLibrary/catalogo/agregar" class="row g-3" method="post" enctype="multipart/form-data" id="formAltaLibro" name="formAltaLibro" onsubmit="return confirmaIngreso(this);" >
             <div class="col-md-4">
                 <label for="txtNameBook" class="form-label">Nombre del libro:</label>
-                <input type="text" class="form-control" id="txtNameBook" name="txtNameBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{5,50}" required>
+                <input type="text" class="form-control" id="txtNameBook" name="txtNameBook" pattern="{5,100}" required>
             </div>
             <div class="col-md-4">
                 <label for="txtAuthorBook" class="form-label">Nombre del autor:</label>
-                <input type="text" class="form-control" id="txtAuthorBook" name="txtAuthorBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1 ]{5,50}" required>
+                <input type="text" class="form-control" id="txtAuthorBook" name="txtAuthorBook" pattern="{5,100}" required>
             </div>
             <div class="col-md-4">
                 <label for="txtISBNBook" class="form-label">ISBN:</label>
@@ -111,11 +111,11 @@
             </div>
             <div class="col-8">
                 <label for="txtAreaSinposis" class="form-label">Sinpósis:</label>
-                <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{10,50}"></textarea>
+                <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered></textarea>
             </div>
             <div class="col-12">
                 <span></span>
-                <button class="btn btn-success" name="agregar" type="submit">Agregar</button> 
+                <button class="btn btn-success" name="agregar" type="submit">Editar</button> 
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
             <div class="col-12"></div>

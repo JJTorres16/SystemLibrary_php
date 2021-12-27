@@ -39,38 +39,45 @@
         $conCatalogo = new Catalogo();
         $catalogo = $conCatalogo->showAll();
 
-        foreach($catalogo as $row) {
-        $ruteCover = "./".$row->getPortada();
     ?>
 
     <div class="container" style="margin-top:25px; margin-left:125px">
         <div class="row justify-content-center">
             <div class="row" style="margin-top:25px; margin-bottom:25px;">
-            <?php for($i = 0; $i<3; $i++){ ?>
-                <div class="col">
+
+            <?php 
+                foreach($catalogo as $row) { 
+                $ruteCover = "./".$row->getPortada();
+            ?>
+
+                <div class="col-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $row->getNombre() ?> <a href="catalogo/edit" class="btn btn-primary btn-sm">Editar</a></h5>
-                            <!--p class="card-text"><?php echo $row->getSinopsis() ?></p--> 
-                            <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
-                            <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
-                            <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
-                            <a href="/SystemLibrary/prestamo/add?idLibro=1&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
-                        </div>
+                        <form action="" method="POST">
+                        <input hidden type="text" name="txtidLibro" value="<?php echo $row->getidLibros(); ?>">
+                            <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $row->getNombre() ?> <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a></h5>
+                                <!--p class="card-text"><//?php echo $row->getSinopsis() ?></p--> 
+                                <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
+                                <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
+                                <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
+                                <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <?php } ?>        
+
+            <?php
+    
+                }
+
+            ?>
+                
             </div>
         </div>    
     </div>
 
-    <?php
     
-        }
-
-    ?>
-    
-    <?php //require 'views/footer.php'; ?>     
+    <?php //require 'views/footer.php'; ?>
 </body>
 </html>
