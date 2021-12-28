@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link rel="stylesheet" href="./public/css-owner/UpdateCover.css"-->
     <!--link rel="stylesheet" href="public/css/default.css"-->
     <title>Catálogo de Libros</title>
 </head>
@@ -41,9 +42,8 @@
 
     ?>
 
-    <div class="container" style="margin-top:25px; margin-left:125px">
-        <div class="row justify-content-center">
-            <div class="row" style="margin-top:25px; margin-bottom:25px;">
+    <div class="container" style="margin-left: 120px;">
+            <div class="row" style="margin-top:50px; margin-bottom:25px;">
 
             <?php 
                 foreach($catalogo as $row) { 
@@ -52,18 +52,17 @@
 
                 <div class="col-4">
                     <div class="card" style="width: 18rem;">
-                        <form action="" method="POST">
-                        <input hidden type="text" name="txtidLibro" value="<?php echo $row->getidLibros(); ?>">
-                            <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row->getNombre() ?> <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a></h5>
-                                <!--p class="card-text"><//?php echo $row->getSinopsis() ?></p--> 
-                                <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
-                                <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
-                                <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
-                                <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
-                            </div>
-                        </form>
+                        <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px" id="coverPhoto">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row->getNombre() ?> 
+                                <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a>
+                            </h5>                               
+                            <!--p class="card-text"><//?php echo $row->getSinopsis() ?></p--> 
+                            <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
+                            <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
+                            <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
+                            <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
+                        </div>
                     </div>
                 </div>
 
@@ -73,8 +72,7 @@
 
             ?>
                 
-            </div>
-        </div>    
+            </div> 
     </div>
 
     

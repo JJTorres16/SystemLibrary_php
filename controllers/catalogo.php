@@ -157,6 +157,29 @@ class Catalogo extends Controller {
                 $quantity = $_POST['txtTotalBook'];
                 $sinopsis = $_POST['txtAreaSinposis'];
                 $editorial = $_POST['txtEditorialBook'];
+                $coverName = $_FILES['fileImageBook']['name'];
+
+                //Lectura de la imagen:
+                if($coverName != ""){
+
+                    echo "Si entreó aquí";
+
+                    // Lectura de la imagen
+                    $coverType = $_FILES['fileImageBook']['type'];
+                    $coverSize = $_FILES['fileImageBook']['size'];
+                    $coverRute = $_FILES['fileImageBook']['tmp_name'];
+                    
+                    // Proceso par guardar la ruta:
+                    $rute = 'public/imgs/'.$coverName;
+                    move_uploaded_file($coverRute, $rute); // Movemos la imagen al fichero /public/imgs    
+
+                    $modeloCatalogo -> setPortada($rute);
+
+                } else {
+                    $inputCover = "";
+
+                }
+
 
                 $modeloCatalogo->setidLibros($idLibro);
                 $modeloCatalogo->setNombre($nameBook);

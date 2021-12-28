@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../public/js-own/formularios.js"></script>
+    <link rel="stylesheet" href="../public/css-owner/UploadCover.css">
     <title>Alta de libros</title>
 </head>
 <body>
@@ -104,18 +105,32 @@
                 <input type="text" class="form-control" id="txtTotalBook" name="txtTotalBook" pattern="[0-9]{1,10}" required>
             </div>
             <div class="col-md-4">
-                <label for="fileImageBook" class="form-label">Portada:</label>
+                <div class="container-img">
+                    <div class="wrapper">
+                        <div class="image">
+                            <img src=" " alt="" id="imgPortadaLibro">
+                        </div>
+                        <div class="content">
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <div class="text">No se ha elegido una portada</div>
+                        </div>
+                    </div>
+                        <input type="file" accept="image/*" class="form-control" id="fileImageBook" name="fileImageBook" required hidden><br>
+                        <button onclick="defaultBtnActive();" class="btn btn-secondary" name="btnChooseCover" id="btnChooseCover" type="button">Portada</button>
+                </div>
+                <!--label for="fileImageBook" class="form-label">Portada:</label>
                 <input type="file" accept="image/*" class="form-control" id="fileImageBook" name="fileImageBook" required><br>
-                <!-- Se previsualiza la imágen -->
+                <Se previsualiza la imágen>
                 <img src="" id="imgPortadaLibro" style="max-width:150px">
+                    <div class="content">
+                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <div>Imágen no seleccionada</div>
+                    </div-->
             </div>
             <div class="col-8">
                 <label for="txtAreaSinposis" class="form-label">Sinpósis:</label>
                 <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered></textarea>
-            </div>
-            <div class="col-12">
-                <span></span>
-                <button class="btn btn-success" name="agregar" type="submit">Editar</button> 
+                <br><button class="btn btn-success" name="agregar" type="submit">Agregar</button> 
                 <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
             </div>
             <div class="col-12"></div>
@@ -151,7 +166,8 @@
 </div>
     
     
-    <?php //require 'views/footer.php' ?>                           
+    <?php //require 'views/footer.php' ?>
+    <script src="../public/js-own/buttonUpload.js"></script>                           
     <script src="../public/js-own/preview-image.js"></script>
 </body>
 </html>

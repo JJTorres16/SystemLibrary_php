@@ -1,0 +1,52 @@
+.container-img .wrapper {
+    position: relative;
+    margin-left: 0%;
+    text-align: center;
+    padding: 50px 0;
+    height: 300px;
+    width: 50%;
+    border-radius: 5px;
+    border: 2px dashed #c2cdda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wrapper.active{
+    border: none;
+}
+
+.wrapper .image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .image img{
+    height: 100%;
+    width: 100%;    
+    object-fit: cover;
+    border: none;
+}
+
+.wrapper .icon {
+   font-size: 100px;
+   color:  #713269; 
+}
+
+.wrapper .text{
+    font-size: 17px;
+    font-weight: 500;
+    color: #5B5B7B;
+}
+
+.container-img #btnChooseCover{
+    margin-top: 0px;
+    width: 50%;
+    background-color: #713269;
+}
+

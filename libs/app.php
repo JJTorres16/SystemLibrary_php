@@ -32,6 +32,9 @@ require_once 'controllers/error.php';
                    
                } elseif($url[1] == 'editar'){
                    $controller -> editar();
+
+               } elseif($url[1] == 'cambiarPortada'){
+                   $controller -> cambiarPortada();
                }
 
            } else {

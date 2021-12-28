@@ -1,0 +1,16 @@
+#btnChooseCover{
+    position: relative;
+    bottom: 0;
+    width: 60%;
+    height: 45px;
+    text-align: center;
+    background-color: #713269;
+    color: white;
+    border-radius: 10px;
+    line-height: 30px;
+    font-size: 17px;
+}
+
+#btnChooseCover i{
+    font-size: 20px;
+}

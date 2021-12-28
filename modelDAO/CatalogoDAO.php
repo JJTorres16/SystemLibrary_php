@@ -46,26 +46,51 @@ class CatalogoDAO extends Model{
 
     function edit($catalogo){
 
-        $query = parent::getConnection()->prepare("UPDATE libros SET nombre = ?, autor = ?, isbn = ?, formato = ?, idioma = ?, edicion = ?, anio = ?, categoria = ?,
+        if($catalogo->getPortada() != ""){
+            $query = parent::getConnection()->prepare("UPDATE libros SET nombre = ?, autor = ?, isbn = ?, formato = ?, idioma = ?, edicion = ?, anio = ?, categoria = ?,
+                                                    nopaginas = ?, cantidad = ?, sinopsis = ?, editorial = ?, portada = ? WHERE idlibros = ?;");
+
+            $query -> execute(array(
+                $catalogo->getNombre(),
+                $catalogo->getAutor(),
+                $catalogo->getISBN(),
+                $catalogo->getFormato(),
+                $catalogo->getIdioma(),
+                $catalogo->getEdicion(),
+                $catalogo->getAnio(),
+                $catalogo->getCategoria(),
+                $catalogo->getPaginas(),
+                $catalogo->getCantidad(),
+                $catalogo->getSinopsis(),
+                $catalogo->getEditorial(),
+                $catalogo->getPortada(),
+                $catalogo->getidLibros()
+            ));
+
+        } else {
+            $query = parent::getConnection()->prepare("UPDATE libros SET nombre = ?, autor = ?, isbn = ?, formato = ?, idioma = ?, edicion = ?, anio = ?, categoria = ?,
                                                     nopaginas = ?, cantidad = ?, sinopsis = ?, editorial = ? WHERE idlibros = ?;");
 
-        $query -> execute(array(
-            $catalogo->getNombre(),
-            $catalogo->getAutor(),
-            $catalogo->getISBN(),
-            $catalogo->getFormato(),
-            $catalogo->getIdioma(),
-            $catalogo->getEdicion(),
-            $catalogo->getAnio(),
-            $catalogo->getCategoria(),
-            $catalogo->getPaginas(),
-            $catalogo->getCantidad(),
-            $catalogo->getSinopsis(),
-            $catalogo->getEditorial(),
-            $catalogo->getidLibros()
-        ));
+            $query -> execute(array(
+                $catalogo->getNombre(),
+                $catalogo->getAutor(),
+                $catalogo->getISBN(),
+                $catalogo->getFormato(),
+                $catalogo->getIdioma(),
+                $catalogo->getEdicion(),
+                $catalogo->getAnio(),
+                $catalogo->getCategoria(),
+                $catalogo->getPaginas(),
+                $catalogo->getCantidad(),
+                $catalogo->getSinopsis(),
+                $catalogo->getEditorial(),
+                $catalogo->getidLibros()
+            ));
+        }
+
 
     }
+
 }
 
 ?>

@@ -1,6 +1,6 @@
 // Obtener referencia al input y a la imagen
-
 const $seleccionaArchvivos = document.querySelector("#fileImageBook");
+const wrapper = document.querySelector(".wrapper");
 $imagePreview = document.querySelector("#imgPortadaLibro");
 
 // Cuando el campo cambie:
@@ -13,6 +13,9 @@ $seleccionaArchvivos.addEventListener("change", () =>{
         return;
     }
 
+    //Quitamos el borde del wrapper:
+    if (wrapper != null)
+        wrapper.classList.add("active");
     // Se toma el primer archivo:
     const primerArchivo = archivos[0];
     // Se convierte a objeto URL

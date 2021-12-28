@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css-owner/UpdateCover.css">
     <title>Edición de libros</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
     ?>
 
     <div class="container" style="margin-top:0px;">
-        <form action="/SystemLibrary/catalogo/editar" class="row g-3" method="post">
+        <form action="/SystemLibrary/catalogo/editar" enctype="multipart/form-data" class="row g-3" method="post">
             <div class="col-sm-11"></div>
             <div class="col-sm-1">
                 <a class="btn btn-danger btn-sm" href="/SystemLibrary/catalogo">Eliminar</a>
@@ -35,6 +36,7 @@
             <?php 
 
                     foreach($libroSelect as $libro) {
+                        $ruteCover = "../".$libro->getPortada();
 
             ?>
 
@@ -54,17 +56,18 @@
             <div class="col-md-4">
                 <label for="txtFormatBook" class="form-label">Formato:</label>
                 <select name="txtFormatSelect" id="txtFormatSelect" class="form-select" require>
-                    <option value="PastaDura">Pasta dura</option>
-                    <option value="PataBlanda">Pasta blanda</option>
-                    <option value="Revista">Revista</option>
+                    <option value="PastaDura" <?php if($libro->getFormato() == "PastaDura"){ ?> selected="selected" <?php } ?>>Pasta dura</option>
+                    <option value="PastaBlanda" <?php if($libro->getFormato() == "PastaBlanda"){ ?> selected="selected" <?php } ?>>Pasta blanda</option>
+                    <option value="Revista" <?php if($libro->getFormato() == "Revista"){ ?> selected="selected" <?php } ?>>Revista</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="txtLenguageBook" class="form-label">Idioma:</label> 
                 <select name="txtLenguageBook" id="txtLenguageBook" class="form-select">
-                    <option value="Español">Español</option>
-                    <option value="Ingles">Inglés</option>
-                    <option value="Aleman">Alemán</option>
+                    <option value="Español" <?php if($libro->getIdioma() == "Español"){ ?> selected="selected" <?php } ?>>Español</option>
+                    <option value="Ingles" <?php if($libro->getIdioma() == "Ingles"){ ?> selected="selected" <?php } ?>>Inglés</option>
+                    <option value="Aleman" <?php if($libro->getIdioma() == "Aleman"){ ?> selected="selected" <?php } ?>>Alemán</option>
+                    <option value="Otro" <?php if($libro->getIdioma() == "Otro"){ ?> selected="selected" <?php } ?>>Otro</option>
                 </select> 
             </div>
             <div class="col-md-2">
@@ -80,11 +83,21 @@
 
                 <select name="txtYearBook" id="txtYearBook" class="form-select">
 
-                    <?php while($cont >= 1980) { ?>
+                    <?php while($cont >= 1980) {
+                        if($cont == $libro->getAnio()){  
+                    
+                    ?>
+                            <option value="<?php echo($cont); ?>" selected=selected><?php echo($cont); ?></option>
 
-                <option value="<?php echo($cont); ?>"><?php echo($cont); ?></option>
+                        <?php } else { ?>
 
-                    <?php $cont = ($cont-1); } ?>
+                            <option value="<?php echo($cont); ?>"><?php echo($cont); ?></option>
+
+                    <?php
+                        }
+
+                        $cont = ($cont-1); } 
+                    ?>
                     
                 </select>
             </div>
@@ -99,12 +112,22 @@
                         $categorias = $contCategoria->showAll();
                 
                         foreach($categorias as $row){
+                            if($row->getId() == $libro->getCategoria()){
     
                     ?>
 
+                            <option value="<?php echo $row->getId() ?>" selected=selected><?php echo $row->getCategoria() ?></option>
+
+                        <?php } else { ?>
+
                             <option value="<?php echo $row->getId() ?>"><?php echo $row->getCategoria() ?></option>
 
-                    <?php } ?>
+                    <?php 
+
+                       } 
+                    } 
+                    
+                    ?>
 
                     </select>
                     <span class="input-group-text" id="inputGroupPrepend">
@@ -124,22 +147,19 @@
                 <label for="txtTotalBook" class="form-label">Cantidad:</label>
                 <input type="text" class="form-control" id="txtTotalBook" name="txtTotalBook" pattern="[0-9]{1,10}" value="<?php echo $libro -> getCantidad(); ?>" required>
             </div>
-            <!--div class="col-md-4">
-                <label for="fileImageBook" class="form-label">Portada:</label>
-                <input type="file" accept="image/*" class="form-control" id="fileImageBook" name="fileImageBook" value="<?php //echo $ruteCover ?>" required><br>
-                <Se previsualiza la imágen >
-                <img src="<?php echo $ruteCover ?>" id="imgPortadaLibro" style="max-width:150px">
-            </div-->
+            <div class="col-md-4">
+                <!--Se previsualiza la imágen -->
+                <img src="<?php echo $ruteCover ?>" id="imgPortadaLibro" style="width: 60%; heigth:100%"><br>
+                <input hidden type="file" accept="image/*" class="form-control" id="fileImageBook" name="fileImageBook"><br>
+                <button type="button" onclick="defaultBtnActive();" id="btnChooseCover" name="btnChooseCover"><i class="fas fa-camera"></i></button>
+            </div>
             <div class="col-8">
                 <label for="txtAreaSinposis" class="form-label">Sinpósis:</label>
-                <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered pattern="{10,50}" ><?php echo $libro -> getSinopsis(); ?></textarea>
+                <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered pattern="{10,50}" ><?php echo $libro -> getSinopsis(); ?></textarea><br>
+                <button class="btn btn-success" name="editar" type="submit">Guardar</button> 
+                <a class="btn btn-warning" href="/SystemLibrary/catalogo">Cancelar</a>            
             </div>
-            <div class="col-12">
-                <span></span>
-                <button class="btn btn-success" name="editar" type="submit">Editar</button> 
-                <a class="btn btn-warning" href="/SystemLibrary/catalogo">Cancelar</a>
-            </div>
-            <div class="col-12"></div>
+            <div class="col-md-12"></div>
 
             <?php 
 
@@ -151,6 +171,7 @@
     </div>    
 
     <?php //require 'views/footer.php' ?>
-    <script src="../public/js-own/preview-image.js"></script>
+    <script src="/SystemLibrary/public/js-own/buttonUpload.js"></script>                           
+    <script src="/SystemLibrary/public/js-own/preview-image.js"></script>
 </body>
 </html>
