@@ -42,51 +42,51 @@
 
     ?>
 
-            <div class="row" style="margin-top:50px; margin-bottom:25px; margin-left: 110px;">
+    <div class="row" style="margin-top:50px; margin-bottom:25px; margin-left: 110px;">
 
-                <?php 
-                    foreach($catalogo as $row) { 
-                    $ruteCover = "./".$row->getPortada();
-                ?>
-
-                <div class="col-md-4" style="margin-bottom: 20px;">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px" id="coverPhoto">
-                        <div class="accordion" id="accordionPannel">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="panel-heading-<?php echo $row->getidLibros(); ?>">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel-<?php echo $row->getidLibros(); ?>" aria-expanded="true" aria-controls="panel-<?php echo $row->getidLibros(); ?>">
-                                        Información:
-                                    </button>
-                                </h2>
-                                <div id="panel-<?php echo $row->getidLibros(); ?>" class="accordion-collapse collapse" aria-labelledby="panel-heading-<?php echo $row->getidLibros(); ?>">
-                                    <div class="accordion-body">     
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?php echo $row->getNombre() ?> 
-                                                <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a>
-                                            </h5>                               
-                                            <!--p class="card-text"><?php //echo $row->getSinopsis() ?></p--> 
-                                            <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
-                                            <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
-                                            <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
-                                            <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
-                                        </div>
-                                    </div>  
+        <?php 
+            foreach($catalogo as $row) { 
+            $ruteCover = "./".$row->getPortada();
+        ?>
+    
+   
+        <div class="col-md-4" style="margin-bottom: 20px;">
+            <div class="card" style="width: 18rem;">
+                <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px" id="coverPhoto">
+                    <div class="accordion" id="accordionPannel">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-<?php echo $row->getidLibros(); ?>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel-<?php echo $row->getidLibros(); ?>" aria-expanded="true" aria-controls="panel-<?php echo $row->getidLibros(); ?>">
+                                    Información:
+                                </button>
+                            </h2>
+                            <div id="panel-<?php echo $row->getidLibros(); ?>" class="accordion-collapse collapse" aria-labelledby="panel-heading-<?php echo $row->getidLibros(); ?>">
+                            <div class="accordion-body">     
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row->getNombre() ?> 
+                                        <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a>
+                                    </h5>                               
+                                    <!--p class="card-text"><?php //echo $row->getSinopsis() ?></p--> 
+                                    <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
+                                    <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
+                                    <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>
+                                    <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
                                 </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <?php
+    <?php
         
-                    }
+        }
 
-                ?>
-                
-            </div> 
+    ?>
 
+    </div>
     
     <?php //require 'views/footer.php'; ?>
 </body>
-</html>
+</html
