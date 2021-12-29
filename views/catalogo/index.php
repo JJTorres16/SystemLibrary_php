@@ -42,6 +42,7 @@
 
     ?>
 
+<<<<<<< HEAD
             <div class="row" style="margin-top:50px; margin-bottom:25px; margin-left: 110px;">
 
                 <?php 
@@ -75,18 +76,54 @@
                                 </div>
                             </div>
                         </div>
+=======
+    <div class="container" style="margin-left: 75px; margin-top:50px;">
+        <?php 
+            foreach($catalogo as $row) { 
+            $ruteCover = "./".$row->getPortada();
+        ?>
+
+        <div class="card" style="width: 100%;">
+            <div class="row no-gutters">    
+                <div class="col-md-2">
+                    <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="275px" width="50px" id="coverPhoto">
+                </div>
+                     
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row->getNombre() ?> 
+                            <a type="submit" href="catalogo/edit?idLibro=<?php echo $row->getidLibros(); ?>" class="btn btn-primary btn-sm">Editar</a>
+                        </h5>                                                       
+                        <p class="card-text"><?php echo $row->getSinopsis() ?></p>
+                        <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
+                        <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
+
+                            <?php if($row->getCantidad() >= 4) { ?>
+                                <a type="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=casa" class="btn btn-success btn-sm">A Casa</a>                       
+                            <?php } ?>
+
+                        <a href="/SystemLibrary/prestamo/add?idLibro=<?php echo $row->getidLibros(); ?>&tipo=sala" class="btn btn-danger btn-sm">A Sala</a>
+>>>>>>> c60a273d16728295ea8c606455f27d65b4c655ba
                     </div>
                 </div>
+            </div>
+        </div><br>
 
                 <?php
         
                     }
 
+<<<<<<< HEAD
                 ?>
                 
             </div> 
+=======
+            ?>
+
+    </div>
+>>>>>>> c60a273d16728295ea8c606455f27d65b4c655ba
 
     
     <?php //require 'views/footer.php'; ?>
 </body>
-</html>
+</html
