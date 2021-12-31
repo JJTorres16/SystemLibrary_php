@@ -83,7 +83,12 @@ class Catalogo extends Controller {
         $listaCatalogo = array();
         $catalogoDAO = new CatalogoDAO();
 
-        $queryCatalogo = $catalogoDAO->show();
+        if(isset($_GET['busqueda']))
+            $busqueda = $_GET['busqueda'];
+        else
+            $busqueda = "";
+
+        $queryCatalogo = $catalogoDAO->show($busqueda, $_SESSION['categoria']);
 
         foreach($queryCatalogo as $row){
             $modelCat = new ModeloCatalogo();
@@ -136,72 +141,90 @@ class Catalogo extends Controller {
         return $listaCatalogo;
     }
 
-         function editar(){
+    function editar(){
 
-             $modeloCatalogo = new ModeloCatalogo();
-             $catalogoDAO = new CatalogoDAO();
+        $modeloCatalogo = new ModeloCatalogo();
+        $catalogoDAO = new CatalogoDAO();
 
 
-             // Si se ha realizado un mehtdo POST
-             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $idLibro = $_POST['txtIdLibro'];
-                $nameBook = $_POST['txtNameBook'];
-                $nameAuthor = $_POST['txtAuthorBook'];
-                $ISBN = $_POST['txtISBNBook'];
-                $format = $_POST['txtFormatSelect'];
-                $lengauge = $_POST['txtLenguageBook'];
-                $edition = $_POST['txtEditionBook'];
-                $year = $_POST['txtYearBook'];
-                $category = $_POST['txtCategoryBook'];
-                $totalPages = $_POST['txtPagesBook'];
-                $quantity = $_POST['txtTotalBook'];
-                $sinopsis = $_POST['txtAreaSinposis'];
-                $editorial = $_POST['txtEditorialBook'];
-                $coverName = $_FILES['fileImageBook']['name'];
+        // Si se ha realizado un mehtdo POST
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $idLibro = $_POST['txtIdLibro'];
+            $nameBook = $_POST['txtNameBook'];
+            $nameAuthor = $_POST['txtAuthorBook'];
+            $ISBN = $_POST['txtISBNBook'];
+            $format = $_POST['txtFormatSelect'];
+            $lengauge = $_POST['txtLenguageBook'];
+            $edition = $_POST['txtEditionBook'];
+            $year = $_POST['txtYearBook'];
+            $category = $_POST['txtCategoryBook'];
+            $totalPages = $_POST['txtPagesBook'];
+            $quantity = $_POST['txtTotalBook'];
+            $sinopsis = $_POST['txtAreaSinposis'];
+            $editorial = $_POST['txtEditorialBook'];
+            $coverName = $_FILES['fileImageBook']['name'];
 
-                //Lectura de la imagen:
-                if($coverName != ""){
+            //Lectura de la imagen:
+            if($coverName != ""){
 
-                    echo "Si entreó aquí";
+                echo "Si entreó aquí";
 
-                    // Lectura de la imagen
-                    $coverType = $_FILES['fileImageBook']['type'];
-                    $coverSize = $_FILES['fileImageBook']['size'];
-                    $coverRute = $_FILES['fileImageBook']['tmp_name'];
+                // Lectura de la imagen
+                $coverType = $_FILES['fileImageBook']['type'];
+                $coverSize = $_FILES['fileImageBook']['size'];
+                $coverRute = $_FILES['fileImageBook']['tmp_name'];
                     
-                    // Proceso par guardar la ruta:
-                    $rute = 'public/imgs/'.$coverName;
-                    move_uploaded_file($coverRute, $rute); // Movemos la imagen al fichero /public/imgs    
+                // Proceso par guardar la ruta:
+                $rute = 'public/imgs/'.$coverName;
+                move_uploaded_file($coverRute, $rute); // Movemos la imagen al fichero /public/imgs    
 
-                    $modeloCatalogo -> setPortada($rute);
+                $modeloCatalogo -> setPortada($rute);
 
-                } else {
-                    $inputCover = "";
+            } else {
+                $inputCover = "";
 
-                }
+            }
 
+            $modeloCatalogo->setidLibros($idLibro);
+            $modeloCatalogo->setNombre($nameBook);
+            $modeloCatalogo->setAutor($nameAuthor);
+            $modeloCatalogo->setISBN($ISBN);
+            $modeloCatalogo->setFormato($format);
+            $modeloCatalogo->setIdioma($lengauge);
+            $modeloCatalogo->setEdicion($edition);
+            $modeloCatalogo->setAnio($year);
+            $modeloCatalogo->setCategoria($category);
+            $modeloCatalogo->setPaginas($totalPages);
+            $modeloCatalogo->setCantidad($quantity);
+            $modeloCatalogo->setSinopsis($sinopsis);
+            $modeloCatalogo->setEditorial($editorial);
 
-                $modeloCatalogo->setidLibros($idLibro);
-                $modeloCatalogo->setNombre($nameBook);
-                $modeloCatalogo->setAutor($nameAuthor);
-                $modeloCatalogo->setISBN($ISBN);
-                $modeloCatalogo->setFormato($format);
-                $modeloCatalogo->setIdioma($lengauge);
-                $modeloCatalogo->setEdicion($edition);
-                $modeloCatalogo->setAnio($year);
-                $modeloCatalogo->setCategoria($category);
-                $modeloCatalogo->setPaginas($totalPages);
-                $modeloCatalogo->setCantidad($quantity);
-                $modeloCatalogo->setSinopsis($sinopsis);
-                $modeloCatalogo->setEditorial($editorial);
+             // Se manda al objeto DAO para ejecutar la función de UPDATE:
+            $catalogoDAO -> edit($modeloCatalogo);
+            }
 
-                 // Se manda al objeto DAO para ejecutar la función de UPDATE:
-                $catalogoDAO -> edit($modeloCatalogo);
-             }
+            header('Location: /SystemLibrary/catalogo');
 
-             header('Location: /SystemLibrary/catalogo');
+    }
 
-         }
+    function eliminar(){
+
+        $modeloCatalogo = new ModeloCatalogo();
+        $catalogoDAO = new CatalogoDAO();
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $idLibro = $_POST['txtIdLibro'];
+
+            //echo 'Entró para eliminar el libro';
+            $modeloCatalogo -> setidLibros($idLibro);
+
+            // Se ejecuta el modelo DAO de catálogo para eliminar el libro seleccionado:
+            $catalogoDAO ->delete($modeloCatalogo);
+
+        }
+
+        header('Location: /SystemLibrary/catalogo');
+    }
 }
 
 ?>

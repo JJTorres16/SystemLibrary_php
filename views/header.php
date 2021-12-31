@@ -13,17 +13,46 @@
 
 <body>
 
+    <?php
+
+        session_start();
+    
+    ?>
+
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #713269">
         <div class="container-fluid">
             <a class="navbar-brand mb-0 h1" href="/SystemLibrary">BIBLIOTECA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navegacion"       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navegacion" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="Navegacion">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/SystemLibrary/catalogo">Catálogo</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropDownCatalogoCategoria" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropDownCatalogoCategoria">
+                            <?php
+
+                                $contCategoria = new Categoria();
+                                $categorias = $contCategoria->showAll();
+
+                                foreach($categorias as $categoria){
+                                    $nameCategoria = $categoria->getCategoria();
+                                    $nameCategoria = rtrim($nameCategoria, '/');
+                                    $nameCategoria = explode('/', $nameCategoria);
+
+                            ?>
+
+                            <li><a href="/SystemLibrary/catalogo?categoria=<?php echo $categoria->getId(); ?>" class="dropdown-item"><?php echo $nameCategoria[1]; ?></a></li>
+                            
+                            <?php
+                                }
+                            ?>
+
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="/SystemLibrary/catalogo?categoria=0" class="dropdown-item">Todo</a></li>
+                        
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/SystemLibrary/alumno">Alumnos</a>

@@ -32,10 +32,14 @@ class CatalogoDAO extends Model{
 
     }
     
-    function show(){
+    function show($busqueda, $categoria){
 
-        $query = "SELECT * FROM libros ORDER BY nombre ASC";
-        return parent::getConnection()->query($query);
+        if($categoria > 0)
+            $query = "SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER('%$busqueda%') AND categoria = $categoria ORDER BY nombre ASC";
+        else
+            $query = "SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER('%$busqueda%') ORDER BY nombre ASC";
+
+            return parent::getConnection()->query($query);
     }
 
     function showDetail($id){
@@ -87,8 +91,19 @@ class CatalogoDAO extends Model{
                 $catalogo->getidLibros()
             ));
         }
+    }
+
+    function delete($catalogo){
+
+        //$query = parent::getConnection()->prepare("DELETE FROM libros WHERE idlibros = ?");
+        $query = parent::getConnection()->prepare("UPDATE libros SET cantidad = 0 WHERE idlibros = ?");
 
 
+        $query-> execute(array(
+            $catalogo -> getidLibros()
+        ));
+
+        //echo "Ya se eliminó el libro";
     }
 
 }

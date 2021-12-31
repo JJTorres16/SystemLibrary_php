@@ -7,22 +7,17 @@ function confirmaIngreso(form){
     isbn = document.getElementById("txtISBNBook").value;
     editorial = document.getElementById("txtEditorialBook").value;
 
-    /*action = confirm("¿Estás seguro de querer agregar el libro " + libro + " al stock?");
-
-    if(action)
-        document.formAltaLibro.submit();
-    else
-        e.preventDefault();*/
-
     swal({
         title: "¿Seguro que quieres agregar el libro " + libro + " al stock?",
         text: "Autor: " + autor + "\nAño: " + anio + "\nISBN: " + isbn + "\nEditorial: " + editorial,
-        icon:"warning",
+        icon:"info",
         buttons: true,
-        dangerMode: true,
     })
     .then((isOkay) => {
         if(isOkay){
+            swal("¡El libro se ha añadido al stock!", {
+                icon: "success",
+            });
             document.formAltaLibro.submit();
             return true;
         } 
@@ -30,4 +25,49 @@ function confirmaIngreso(form){
     return false;
 }
 
-//Will tiene una afición muy extraña para un chico de catorce años: pasa su tiempo excavando, buscando tesoros perdidos en las entrañas de la tierra. Así descubre que, bajo el mismo Londres, existen lugares desconocidos, túneles que constan en ningún mapa y puertas olvidadas durante siglos. Pero... ¿adónde llevan?/*
+function confirmaBajaLogica(form){
+
+    libro = document.getElementById("txtNameBook").value;
+
+    swal({
+        title: "¿Seguro que quieres dar de baja el libro " + libro + "?",
+        icon:"warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("¡El libro se ha eliminado!", {
+                icon: "success",
+            });
+            document.formBajaLibro.submit();
+            return true;
+        } 
+    });
+    return false;
+}
+
+
+function confirmaCambios(form){
+
+    libro = document.getElementById("txtNameBook").value;
+
+    swal({
+        title: "¿Seguro que quieres guardar los cambios?",
+        icon:"info",
+        buttons: true,
+        //dangerMode: false,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("¡Los cambios se han guardado", {
+                icon: "success",
+            });
+            document.formCambioLibro.submit();
+            return true;
+        } 
+    });
+    return false;
+}
+
+

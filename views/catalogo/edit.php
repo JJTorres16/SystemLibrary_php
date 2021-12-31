@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../public/js-own/formularios.js"></script>
     <link rel="stylesheet" href="../public/css-owner/UpdateCover.css">
     <title>Edición de libros</title>
 </head>
 <body>
 
-    <?php require 'views/header.php' ?>
-    <?php require 'controllers/categoria.php' ?>
+    <?php require_once 'views/header.php'; ?>
 
     <div class="container" style="margin-top:50px;">
         <h2>Edición de material bibligráfico</h2>
@@ -24,21 +24,30 @@
         $controllerCatalogo = new Catalogo();
         $libroSelect = $controllerCatalogo -> showDetail($idLibro);
 
+        foreach($libroSelect as $libro) {
+            $ruteCover = "../".$libro->getPortada();
+
     ?>
 
     <div class="container" style="margin-top:0px;">
-        <form action="/SystemLibrary/catalogo/editar" enctype="multipart/form-data" class="row g-3" method="post">
-            <div class="col-sm-11"></div>
-            <div class="col-sm-1">
-                <a class="btn btn-danger btn-sm" href="/SystemLibrary/catalogo">Eliminar</a>
+        
+        <form action="/SystemLibrary/catalogo/eliminar" class="row g-3" id="formBajaLibro" name="formBajaLibro" method="POST" onsubmit="return confirmaBajaLogica(this);">
+            <div class="col-md-11"></div>
+            <div class="col-md-1">
+                <input hidden type="text" id="txtIdLibro" name="txtIdLibro" value="<?php echo $libro -> getidLibros(); ?>">
+                <input hidden type="text" id="txtNameBook" name="txtNameBook" value="<?php echo $libro -> getNombre(); ?>">
+                <?php if($libro->getCantidad() > 0) { ?>
+                    <button type="submit" class="btn btn-danger" style="margin-left:20px">Borrar</button>
+
+                <?php } else { ?>
+                    <button type="submit" class="btn btn-danger" style="margin-left:20px" disabled>Borrar</button>
+
+                <?php } ?>
             </div>
+        </form>
+        
 
-            <?php 
-
-                    foreach($libroSelect as $libro) {
-                        $ruteCover = "../".$libro->getPortada();
-
-            ?>
+        <form action="/SystemLibrary/catalogo/editar" enctype="multipart/form-data" class="row g-3" method="post" id="formCambioLibro" name="formCambioLibro" onsubmit="return confirmaCambios(this);">
 
             <div class="col-md-4">
                 <input hidden type="text" name="txtIdLibro" value="<?php echo $libro -> getidLibros(); ?>">
@@ -108,8 +117,13 @@
 
                     <?php
                         
-                        $contCategoria = new Categoria(); // Controlador de las categorias
-                        $categorias = $contCategoria->showAll();
+                        /*
+                            NOTA:
+                            Aquí no se vuelve a delcarar un objeto de la clase Categoria, porque en el header ya se declaró uno,
+                            Al usar el 'require_once 'views/header.php' se inserta todo el código de ese archivo en este, y por lo tanto
+                            es como si el objeto que usamos en ese código estuviera escrito aquí también. Es por ello que el objeto $categoria
+                            puede ser usado en el foreach sin problema alguno. 
+                        */
                 
                         foreach($categorias as $row){
                             if($row->getId() == $libro->getCategoria()){

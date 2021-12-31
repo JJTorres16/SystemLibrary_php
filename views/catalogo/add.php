@@ -9,8 +9,7 @@
     <title>Alta de libros</title>
 </head>
 <body>
-    <?php require 'views/header.php' ?>
-    <?php require 'controllers/categoria.php' ?>
+    <?php require_once  'views/header.php'; ?>
 
     <div class="container" style="margin-top:50px;">
         <h2>Alta de material bibliográfico</h2>
@@ -74,10 +73,15 @@
                     <select type="text" class="form-control" id="txtCategoryBook" name="txtCategoryBook" pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}" required>
 
                     <?php
+
+                        /*
+                            NOTA:
+                            Aquí no se vuelve a delcarar un objeto de la clase Categoria, porque en el header ya se declaró uno,
+                            Al usar el 'require_once 'views/header.php' se inserta todo el código de ese archivo en este, y por lo tanto
+                            es como si el objeto que usamos en ese código estuviera escrito aquí también. Es por ello que el objeto $categoria
+                            puede ser usado en el foreach sin problema alguno. 
+                        */
                         
-                        $contCategoria = new Categoria(); // Controlador de las categorias
-                        $categorias = $contCategoria->showAll();
-                
                         foreach($categorias as $row){
     
                     ?>
