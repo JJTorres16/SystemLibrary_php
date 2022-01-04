@@ -93,14 +93,14 @@ class CatalogoDAO extends Model{
         }
     }
 
-    function delete($catalogo){
+    function delete($idLibro){
 
         //$query = parent::getConnection()->prepare("DELETE FROM libros WHERE idlibros = ?");
         $query = parent::getConnection()->prepare("UPDATE libros SET cantidad = 0 WHERE idlibros = ?");
 
 
         $query-> execute(array(
-            $catalogo -> getidLibros()
+            $idLibro
         ));
 
         //echo "Ya se eliminó el libro";

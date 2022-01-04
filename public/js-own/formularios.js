@@ -1,4 +1,6 @@
 
+// Funciones relacionadas al CRUD de libros:
+
 function confirmaIngreso(form){
 
     libro = document.getElementById("txtNameBook").value;
@@ -70,4 +72,83 @@ function confirmaCambios(form){
     return false;
 }
 
+
+// Funciones relacionadas al CRUD de alumnos:
+
+function confirmaAltaAlumno(form){
+
+    nombreAlumno = document.getElementById("txtNameAlumno").value;
+    apPaternoAlumno = document.getElementById("txtPaternoAlumno").value;
+    apMaternoAlumno = document.getElementById("txtMaternoAlumno").value;
+    noControl = document.getElementById("txtNCAlumno").value;
+    carrera = document.getElementById("txtCarreraAlumno").value;
+    email = document.getElementById("txtEmailAlumno").value;
+
+    // Generamos el nombre completo del alumno:
+    nombreCompleto = nombreAlumno + " " + apMaternoAlumno + " " + apMaternoAlumno;
+
+    swal({
+        title: "¿Seguro que quieres dar de alta al alumno " + nombreCompleto + "?",
+        text: "Número de Control: " + noControl + "\nCarrera: " + carrera + "\nEmail: " + email,
+        icon:"info",
+        buttons: true,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("¡Nuevo alumno dado de alta!", {
+                icon: "success",
+            });
+            document.formAltaAlumno.submit();
+            return true;
+        } 
+    });
+    return false;
+}
+
+function confirmaBajaLogicaAlumnos(form){
+
+    nombre = document.getElementById("txtNombreAlumno").value;
+    apPaterno = document.getElementById("txtApPaterno").value;
+    apMaterno = document.getElementById("txtApMaterno").value;
+
+    nombreCompleto = apPaterno + " " + apMaterno + " " + nombre;
+
+    swal({
+        title: "¿Seguro que quieres dar de baja al siguiente alumno/a?",
+        text: "Nombre completo: " + nombreCompleto,
+        icon:"warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("¡El alumno ha sido dado de baja", {
+                icon: "success",
+            });
+            document.formBajaAlumno.submit();
+            return true;
+        } 
+    });
+    return false;
+}
+
+function confirmaCambiosAlumno(form){
+
+    swal({
+        title: "¿Seguro que quieres guardar los cambios?",
+        icon:"info",
+        buttons: true,
+        //dangerMode: false,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("¡Los cambios se han guardado", {
+                icon: "success",
+            });
+            document.formEditAlumno.submit();
+            return true;
+        } 
+    });
+    return false;
+}
 

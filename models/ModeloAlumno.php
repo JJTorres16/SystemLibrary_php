@@ -4,11 +4,14 @@
 
         private $noControl;
         private $nombre;
+        private $apPaterno;
+        private $apMaterno;
         private $carrera;
         private $email;
         private $telefono;
         private $sexo;
         private $noPrestamos;
+        private $habilitado;
 
         // Métodos getter y setter
 
@@ -18,7 +21,7 @@
         }
 
         function getNoControl(){
-            return $noControl;
+            return $this->noControl;
         }
 
         // Nombre del alumno:
@@ -27,7 +30,25 @@
         }
 
         function getNombre(){
-            return $nombre;
+            return $this->nombre;
+        }
+
+        // Apellido paterno del alumno:
+        function setApellidoPaterno($apPaterno){
+            $this->apPaterno = $apPaterno;
+        }
+
+        function getApellidoPaterno(){
+            return $this->apPaterno;
+        }
+
+        // Apellido materno del alumno:
+        function setApellidoMaterno($apMaterno){
+            $this->apMaterno = $apMaterno;
+        }
+
+        function getApellidoMaterno(){
+            return $this->apMaterno;
         }
 
         //Carrera
@@ -36,7 +57,7 @@
         }
 
         function getCarrera(){
-            return $carrera;
+            return $this->carrera;
         }
 
         //E-mail
@@ -45,7 +66,7 @@
         }
 
         function getEmail(){
-            return $email;
+            return $this->email;
         }
 
         //Teléfono
@@ -54,7 +75,7 @@
         }
 
         function getTelefono(){
-            return $telefono;
+            return $this->telefono;
         }
 
         //Sexo
@@ -63,7 +84,7 @@
         }
         
         function getSexo(){
-            return $sexo;
+            return $this->sexo;
         }
 
         //Número de préstamos:
@@ -72,7 +93,16 @@
         }
 
         function getNoPrestamos(){
-            return $noPrestamos;
+            return $this->noPrestamos;
+        }
+
+        // Alumno Habilitado:
+        function setHabilitado($habilitado){
+            $this->habilitado = $habilitado;
+        }
+
+        function getHabilitado(){
+            return $this->habilitado;
         }
 
     }

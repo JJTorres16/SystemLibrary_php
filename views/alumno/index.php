@@ -17,10 +17,12 @@
     <div class="container" style="margin-top:25px">
         <div class="row justify-content-center">
             <div class="col-6">
-                <div class="d-flex">
-                    <input class="form-control" type="search" placeholder="Busca alumno" aria-label="Search">
-                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                </div>                    
+                <form action="/SystemLibrary/alumno/" method="GET">
+                    <div class="d-flex">
+                        <input class="form-control" type="search" name="noControl" placeholder="Busca alumno" aria-label="Search">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>   
+                </form>                 
             </div>
             <div class="row justify-content-center">
                 <div class="col-2">
@@ -29,6 +31,19 @@
             </div>         
         </div>
     </div>
+
+    <?php
+
+        if(isset($_GET['noControl']))
+            $noControl = $_GET['noControl'];
+        else
+            $noControl = "";
+    
+        // Creamos dos objetos: Un objeto $modeloAlumno:
+        $contAlumno = new Alumno();
+        $alumnos = $contAlumno->show($noControl);
+
+    ?>
 
     <div class="container" style="margin-top:75px">
         <table class="table table-striped table-hover">
@@ -43,29 +58,28 @@
                 </tr>
             </thead>
             <tbody>
+
+            <?php
+                foreach($alumnos as $alumno){
+                    $nombreCompleto = $alumno->getApellidoPaterno() . " " . $alumno->getApellidoMaterno() . " " . $alumno->getNombre();
+            ?>
+
                 <tr>
-                    <th scope="row">15010878</th>
-                    <td>Torres Velásquez Jesús Julián</td>
-                    <td>Ingenieria Electrónica</td>
-                    <td>juliantv_416@outlook.com</td>
-                    <td>272-131-56-60</td>
+                    <th scope="row"><?php echo $alumno->getNoControl() ?></th>
+                    <td><?php echo $nombreCompleto ?></td>
+                    <td><?php echo $alumno->getCarrera() ?></td>
+                    <td><?php echo $alumno->getEmail() ?></td>
+                    <td><?php echo $alumno->getTelefono() ?></td>
                     <td>
-                        <a href="alumno/edit?NoCon=15010830" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="/SystemLibrary/prestamo/detail?NoCon=15010878" class="btn btn-outline-success btn-sm">Historial</a>
+                        <a href="/SystemLibrary/alumno/edit?noControl=<?php echo $alumno->getNoControl() ?>" class="btn btn-outline-primary btn-sm">Editar</a>
+                        <a href="/SystemLibrary/prestamo/detail?noControl=<?php echo $alumno->getNoControl() ?>" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">15010830</th>
-                    <td>Jiménez Palacios Samantha Vianey</td>
-                    <td>Ingenieria Electrónica</td>
-                    <td>samantha.vj20@gmail.com</td>
-                    <td>272-572-27-48</td>
-                    <td>
-                        <a href="alumno/edit?NoCon=15010830" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="/SystemLibrary/prestamo/detail?NoCon=15010830" class="btn btn-outline-success btn-sm">Historial</a>
-                    </td>
-                </tr>
-            </tbody>
+            <?php 
+                }
+            ?>
+
+            </tbody>    
         </table>
     </div>
 

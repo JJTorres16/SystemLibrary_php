@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../public/js-own/formularios.js"></script>
     <title>Alta de alumnos</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
     </div><br>
 
     <div class="container" style="margin-top:15px;">
-        <form action="/SystemLibrary/alumno" class="row g-3">
+        <form action="/SystemLibrary/alumno/agregar" class="row g-3" method="POST" name="formAltaAlumno" id="formAltaAlumno" onsubmit="return confirmaAltaAlumno(this);">
             <div class="col-md-4">
                 <label for="txtPaternoAlumno" class="form-label">Apellido Paterno:</label>
                 <input type="text" class="form-control" id="txtPaternoAlumno" name="txtPaternoAlumno" required pattern="[a-zA-ZÁ-ÿ\uf001\u00d1-\ ]{5,50}">
@@ -38,18 +39,18 @@
             </div>
             <div class="col-md-4">
                 <label for="txtEmailAlumno" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="txtEmailAlumno" name="txtEmailAlumno" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <input type="email" class="form-control" id="txtEmailAlumno" name="txtEmailAlumno" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$">
             </div>
             <div class="col-md-4">
                 <label for="txtCarreraAlumno" class="form-label">Carrera:</label>
-                <select name="txtCarreraAlumno" id="txtFormatSelect" class="form-select" required>
-                    <option value="Ingenieria Electrónica">Ingenieria Electrónica</option>
-                    <option value="Ingenieria Eléctrica">Ingenieria Eléctrica</option>
-                    <option value="Ingeniera en Sistema">Ingeniera en Sistemas</option>
-                    <option value="Ingenieria Química">Ingenieria Química</option>
-                    <option value="Ingenieria Mecánica">Ingenieria Mecánica</option>
-                    <option value="Ingenieria Industria">Ingenieria Industria</option>
-                    <option value="Ingenieria en Gestión Empresarial">Ingenieria en Gestión Empresarial</option>                    
+                <select name="txtCarreraAlumno" id="txtCarreraAlumno" class="form-select" required>
+                    <option value="Ingenieria Electrónica">Ingeniería Electrónica</option>
+                    <option value="Ingenieria Eléctrica">Ingeniería Eléctrica</option>
+                    <option value="Ingenieria en Sistemas">Ingeniería en Sistemas</option>
+                    <option value="Ingenieria Química">Ingeniería Química</option>
+                    <option value="Ingenieria Mecánica">Ingeniería Mecánica</option>
+                    <option value="Ingenieria Industrial">Ingeniería Industrial</option>
+                    <option value="Ingenieria en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>                    
                 </select>
             </div>
             <div class="col-md-8"></div>
@@ -83,7 +84,6 @@
             </div>
         </form>
     </div>
-
-    <?php //require 'views/footer.php' ?>
+    
 </body>
 </html>

@@ -215,11 +215,8 @@ class Catalogo extends Controller {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $idLibro = $_POST['txtIdLibro'];
 
-            //echo 'Entró para eliminar el libro';
-            $modeloCatalogo -> setidLibros($idLibro);
-
             // Se ejecuta el modelo DAO de catálogo para eliminar el libro seleccionado:
-            $catalogoDAO ->delete($modeloCatalogo);
+            $catalogoDAO ->delete($idLibro);
 
         }
 
