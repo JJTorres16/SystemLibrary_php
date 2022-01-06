@@ -93,6 +93,17 @@ class CatalogoDAO extends Model{
         }
     }
 
+    function restaUnLibro($idlibro){
+        
+        $query = parent::getConnection()->prepare("UPDATE libros SET cantidad = (SELECT cantidad FROM libros WHERE idlibros = ?) - 1
+                                            WHERE idlibros = ?;");
+
+        $query -> execute(array(
+            $idlibro,
+            $idlibro
+        ));
+    }
+
     function delete($idLibro){
 
         //$query = parent::getConnection()->prepare("DELETE FROM libros WHERE idlibros = ?");

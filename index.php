@@ -6,5 +6,7 @@
     require_once 'controllers/categoria.php';
     require_once 'controllers/alumno.php';
 
+    date_default_timezone_set('America/Mexico_City');
+
     $app = new App();
 ?>

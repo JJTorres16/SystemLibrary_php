@@ -152,3 +152,30 @@ function confirmaCambiosAlumno(form){
     return false;
 }
 
+// Funciones correspondientes al formulario de alta de préstamos:
+
+function confirmaAltaPrestamo(form){
+
+    nombreLibro = document.getElementById("txtNombreLibro").value;
+    noControlEstudiante = document.getElementById("txtNcAlumno").value;
+    fechaInicioPrestamo = document.getElementById("dateFechaInicio").value;
+    fechaFinPrestamo = document.getElementById("dateFinPrestamo").value;
+
+    swal({
+        title: "¿Seguro que quieres dar de alta el préstamo?",
+        text: "Nombre del libro: " + nombreLibro + "\nNúmero de control del alumno/a: " + noControlEstudiante + 
+              "\nFecha de inicio de préstamo: " + fechaInicioPrestamo + "\nFecha de fin de préstamo: " + fechaFinPrestamo,
+        icon:"info",
+        buttons: true,
+    })
+    .then((isOkay) => {
+        if(isOkay){
+            swal("Registrando préstamo", {
+                timerProgressBar: true,
+            });
+            document.formAltaPrestamo.submit();
+            return true;
+        } 
+    });
+    return false;
+}

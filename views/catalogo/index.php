@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--link rel="stylesheet" href="./public/css-owner/UpdateCover.css"-->
     <!--link rel="stylesheet" href="public/css/default.css"-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../public/js-own/mensajes.js"></script>
     <title>Catálogo de Libros</title>
 </head>
 <body>
@@ -25,9 +27,9 @@
             $_SESSION['categoria'] = $_GET['categoria'];
         else
             $_SESSION['categoria'] = 0;
-
+                
     ?>
-      
+  
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">

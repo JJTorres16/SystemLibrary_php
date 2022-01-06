@@ -8,8 +8,8 @@ class AlumnoDAO extends Model{
 
         $habilitado = true;
 
-        $query = parent::getConnection()->prepare("INSERT INTO alumno (nocontrol, nombre, appaterno, apmaterno, carrera, email, telefono, sexo, habilitado)
-                                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        $query = parent::getConnection()->prepare("INSERT INTO alumno (nocontrol, nombre, appaterno, apmaterno, carrera, email, telefono, sexo, prestamosactuales, habilitado)
+                                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
         $query->execute(array(
             $alumno->getNoControl(),
@@ -20,7 +20,7 @@ class AlumnoDAO extends Model{
             $alumno->getEmail(),
             $alumno->getTelefono(),
             $alumno->getSexo(),
-            $habilitado
+            $alumno->getNoPrestamos(),
         ));
         
         

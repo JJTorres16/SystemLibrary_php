@@ -34,6 +34,7 @@ class Alumno extends Controller {
             $emailAlumno = $_POST['txtEmailAlumno'];
             $carreraAlumno = $_POST['txtCarreraAlumno'];
             $sexoAlumno = $_POST['txtSexoAlumno'];
+            $cantidadPrestamos = 0;
 
             // Asigamos las variables al objeto $modeloAlumno
             $modeloAlumno->setNombre($nombreAlumno);
@@ -44,6 +45,7 @@ class Alumno extends Controller {
             $modeloAlumno->setEmail($emailAlumno);
             $modeloAlumno->setCarrera($carreraAlumno);
             $modeloAlumno->setSexo($sexoAlumno);
+            $modeloAlumno->setNoPrestamos($cantidadPrestamos);
 
             // Del objeto alumnoDAO ejecutamos el método add pasando como parámetro el objeto $modeloAlumno:
             $alumnoDAO -> add($modeloAlumno);

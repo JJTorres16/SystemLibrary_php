@@ -3,7 +3,7 @@
     class ModeloPrestamo {
 
         private $idPrestamo;
-        private $almunoNoControl;
+        private $alumnoNoControl;
         private $fecInit;
         private $fecFin;
         private $refrendo;
@@ -22,16 +22,16 @@
         }
 
         function getIdPrestamo(){
-            return $idPrestamo;
+            return $this->idPrestamo;
         }
 
         //Número de control del alumno
-        function setNoControlAlumno($almunoNoControl){
-            $this->alumnoNoControl = $almunoNoControl;
+        function setNoControlAlumno($alumnoNoControl){
+            $this->alumnoNoControl = $alumnoNoControl;
         }
 
         function getNoControlAlumno(){
-            return $almunoNoControl;
+            return $this->alumnoNoControl;
         }
 
         //Fecha de inicio
@@ -40,12 +40,16 @@
         }
 
         function getFecInit(){
-            return $fecInit;
+            return $this->fecInit;
         }
 
         //Fecha de retorno:
         function setFecFin($fecFin){
             $this->fecFin = $fecFin;
+        }
+
+        function getFecFin(){
+            return $this->fecFin;
         }
 
         //Refrendo
@@ -54,7 +58,7 @@
         }
 
         function getRefrendo(){
-            return $refrendo;
+            return $this->refrendo;
         }
 
         //Número de refrendos
@@ -63,7 +67,7 @@
         }
 
         function getNoRefrendo(){
-            return $noRefrendo;
+            return $this->noRefrendo;
         }
 
         //Tipo de préstamo (Casa o a Sala)
@@ -72,7 +76,7 @@
         }
 
         function getTipo(){
-            return $tipo;
+            return $this->tipo;
         }
 
         //Id del libro:
@@ -81,7 +85,7 @@
         }
 
         function getIdLibro(){
-            return $idLibro;
+            return $this->idLibro;
         }
 
         //Observaciones
@@ -90,16 +94,16 @@
         }
 
         function getObservaciones(){
-            return $observaciones;
+            return $this->observaciones;
         }
 
         //¿Hay retraso?
         function setRetraso($retraso){
-            $this->retraso($retraso);
+            $this->retraso = $retraso;
         }
 
         function getRetraso(){
-            return $retraso;
+            return $this->retraso;
         }
 
         //Estado (Nuevo, En curso, Retraso)
@@ -108,7 +112,7 @@
         }
 
         function getEstado(){
-            return $estado;
+            return $this->estado;
         }
 
     }
