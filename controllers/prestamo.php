@@ -28,8 +28,7 @@ class Prestamo extends Controller{
     function agregar(){
 
         $modeloPrestamo = new ModeloPrestamo();
-        $prestamoDAO = new PrestamoDAO();
-        $catalogoDAO = new CatalogoDAO();        
+        $prestamoDAO = new PrestamoDAO();        
     
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $idLibro = $_POST['txtIdLibro']; // -> Falta colocar el campo en el formulario (hidden)
@@ -57,6 +56,9 @@ class Prestamo extends Controller{
 
             // Corroboramos que no haya un prestamo igual (mismo libro):
             $corroboraPrestamo = $prestamoDAO->consultaExistencias($noControlAlumno, $idLibro);
+            foreach($corroboraPrestamo as $prestamoIgual){
+                $mismoLibro = $prestamoIgual['count'];
+            }
 
             //Corrobormos que el alumno no tenga más de un préstamo:
             $cantPrestamosAlumno = $prestamoDAO->cantPrestamosAlumno($noControlAlumno);
@@ -68,13 +70,12 @@ class Prestamo extends Controller{
                 header('Location: /SystemLibrary/prestamo/add?idLibro='.$idLibro.'&tipo='.$tipoPrestamo.'&error=11');
 
             else {
-                if(isset($corroboraPrestamo)){       
+                if($mismoLibro > 0){       
                     header('Location: /SystemLibrary/prestamo/add?idLibro='.$idLibro.'&tipo='.$tipoPrestamo.'&error=12');
 
                 } else
                     $prestamoDAO->add($modeloPrestamo); // Con el método add del modelo DAO de préstamo hacemos la incersión de la base de datos:
-                    $catalogoDAO->restaUnLibro($idLibro); // Restamos en uno la cantidad de libros disponibles:
-                    header ('Location: /SystemLibrary/prestamo/add?idLibro='. $idLibro .'&tipo='. $tipoPrestamo .'&error=0'); 
+                    //header ('Location: /SystemLibrary/prestamo/add?idLibro='. $idLibro .'&tipo='. $tipoPrestamo .'&error=0'); 
             } 
 
         } else
