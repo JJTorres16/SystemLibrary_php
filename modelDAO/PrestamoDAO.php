@@ -40,10 +40,20 @@ class PrestamoDAO extends Model{
         
     }
 
-    /*function show($criterioBusqueda, $busqueda){
+    function showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2){
 
-        $query = "SELECT idprestamo,  FROM "
-    }*/
+        if($criterioBusqueda!="")
+            $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") LIKE LOWER('%" . $busqueda . "%') AND ";
+        else
+            $stringBusqueda = "";
+
+        $query = "SELECT idprestamo, LB.nombre, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
+                  FROM prestamo INNER JOIN libros AS LB ON idlibro = idlibros INNER JOIN alumno as ALM ON alumnonocontrol = nocontrol
+                  WHERE $stringBusqueda (estado = '$estado1' OR estado = '$estado2');";
+                       
+        return parent::getConnection()->query($query);
+       
+    }
 
     function consultaExistencias($noControlAlumno, $idLibro){
 

@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php require_once 'views/header.php' ?>
+    <?php require_once 'controllers/Prestamo.php' ?>
 
     <div class="container" style="margin-top:50px;">
         <h2>Registro de Préstamos</h2>
@@ -15,18 +16,23 @@
     </div><br>
 
     <div class="container">
-        <label for="" class="form-label">Filtra por:</label>
-        <div class="row g-3">
-            <div class="col-md-2">
-                <select name="selectFiltroPrestamos" id="selectFiltroPrestamos" class="form-select">
-                    <option value="alumno">Alumno</option>
-                    <option value="libro">Libro</option>
-                </select>
+        <form action="/SystemLibrary/prestamo">
+            <label for="" class="form-label">Filtra por:</label>
+            <div class="row">
+                <div class="col-md-2">
+                    <select name="selectFiltroPrestamos" id="selectFiltroPrestamos" class="form-select">
+                        <option value="alumnonocontrol">Alumno</option>
+                        <option value="LB.nombre">Libro</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="txtDatoFiltro" name="txtDatoFiltro" placeholder="No. de control de alumno o nombre del libro">                 
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                </div>
             </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="txtDatoFiltro" name="txtDatoFiltro" placeholder="No. de control de alumno o nombre del libro">
-            </div>
-        </div>
+        </form>
     </div>
 
     <div class="container" style="margin-top:25px">
@@ -55,12 +61,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                            <?php 
+    
+                                $controllerPrestamo = new Prestamo();
+                                $listaPrestamo = $controllerPrestamo->show('En curso', 'Retrasado');
+
+                                foreach($listaPrestamo as $prestamoEnCurso){
+                                    $nombreCompleto = $prestamoEnCurso['alumnonombre'] . ' ' . $prestamoEnCurso['appaterno'] . ' ' . $prestamoEnCurso['apmaterno'];
+
+                            ?>
+
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Túneles</td>
-                                    <td>Jesús Julián Torres Velásquez</td>
-                                    <td>12-12-2021</td>
-                                    <td>15-12-2021</td>
+                                    <th scope="row"><?php echo $prestamoEnCurso['idprestamo']; ?></th>
+                                    <td><?php echo $prestamoEnCurso['nombre']; ?></td>
+                                    <td><?php echo $nombreCompleto; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
                                     <td>
                                         <!-- Código para deshabilitar un link -->
                                         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
@@ -68,16 +85,9 @@
                                         </span>
                                     </td>   
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Fundametos de programación orientada a objetos</td>
-                                    <td>Samantha Vianey Jiménez Palacios</td>
-                                    <td>12-12-2021</td>
-                                    <td>15-12-2021</td>
-                                    <td>
-                                        <a href="alumno/edit" class="btn btn-outline-success btn-sm">Refrendar</a>
-                                    </td>
-                                </tr>
+
+                            <?php } ?>
+
                             </tbody>
                         </table>
                     </div>        
@@ -103,12 +113,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                            <?php 
+    
+                                $controllerPrestamo = new Prestamo();
+                                $listaPrestamo = $controllerPrestamo->show('Finalizado');
+
+                                foreach($listaPrestamo as $prestamoEnCurso){
+                                    $nombreCompleto = $prestamoEnCurso['alumnonombre'] . ' ' . $prestamoEnCurso['appaterno'] . ' ' . $prestamoEnCurso['apmaterno'];
+
+                            ?>
+
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Túneles</td>
-                                    <td>Jesús Julián Torres Velásquez</td>
-                                    <td>12-12-2021</td>
-                                    <td>15-12-2021</td>
+                                    <th scope="row"><?php echo $prestamoEnCurso['idprestamo']; ?></th>
+                                    <td><?php echo $prestamoEnCurso['nombre']; ?></td>
+                                    <td><?php echo $nombreCompleto; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
                                     <td>
                                         <!-- Código para deshabilitar un link -->
                                         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
@@ -116,16 +137,9 @@
                                         </span>
                                     </td>   
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Fundametos de programación orientada a objetos</td>
-                                    <td>Samantha Vianey Jiménez Palacios</td>
-                                    <td>12-12-2021</td>
-                                    <td>15-12-2021</td>
-                                    <td>
-                                        <a href="alumno/edit" class="btn btn-outline-success btn-sm">Refrendar</a>
-                                    </td>
-                                </tr>
+
+                            <?php } ?>
+                                
                             </tbody>
                         </table>
                     </div>        

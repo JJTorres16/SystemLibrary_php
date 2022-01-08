@@ -25,6 +25,24 @@ class Prestamo extends Controller{
         $this->view->render('prestamo/detail');
     }
 
+    function show($estado1, $estado2=''){
+        
+        $prestamoDAO = new PrestamoDAO();
+        $listaPrestamo = null;
+        $criterioBusqueda = '';
+        $busqueda = '';
+
+        if(isset($_GET['selectFiltroPrestamos']))
+            $criterioBusqueda = $_GET['selectFiltroPrestamos'];
+        
+        if(isset($_GET['txtDatoFiltro']))
+            $busqueda = $_GET['txtDatoFiltro'];
+
+        $listaPrestamoEnCurso = $prestamoDAO->showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2);
+
+        return $listaPrestamoEnCurso;
+    }
+
     function agregar(){
 
         $modeloPrestamo = new ModeloPrestamo();
