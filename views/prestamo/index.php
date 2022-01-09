@@ -57,7 +57,7 @@
                                     <th scope="col" width="22%">Alumno</th>
                                     <th scope="col" width="12%">Fec. Inicio</th>
                                     <th scope="col" width="12%">Fec. Entrega</th>
-                                    <th scope="col" width="12%">Refrendar</th>
+                                    <th scope="col" width="14%" style="text-align: center;">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,6 +82,7 @@
                                         <!-- Código para deshabilitar un link -->
                                         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
                                             <a href="alumno/edit" class="btn btn-outline-success btn-sm" style="cursor: not-allowed; pointer-events: none;">Refrendar</a>
+                                            <a href="alumno/edit" class="btn btn-outline-primary btn-sm" style="cursor: not-allowed; pointer-events: none;">Devolver</a>
                                         </span>
                                     </td>   
                                 </tr>
