@@ -43,13 +43,14 @@ class PrestamoDAO extends Model{
     function showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2){
 
         if($criterioBusqueda!="")
-            $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") LIKE LOWER('%" . $busqueda . "%') AND ";
+            $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") = LOWER('" . $busqueda . "') AND ";
         else
             $stringBusqueda = "";
 
-        $query = "SELECT idprestamo, LB.nombre, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
+        $query = "SELECT idprestamo, LB.nombre, CTA.categoria, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
                   FROM prestamo INNER JOIN libros AS LB ON idlibro = idlibros INNER JOIN alumno as ALM ON alumnonocontrol = nocontrol
-                  WHERE $stringBusqueda (estado = '$estado1' OR estado = '$estado2');";
+                  INNER JOIN categoria AS CTA ON LB.categoria = id_
+                  WHERE $stringBusqueda (estado LIKE '%$estado1%' OR estado = '%$estado2%');";
                        
         return parent::getConnection()->query($query);
        

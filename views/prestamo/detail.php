@@ -9,11 +9,34 @@
 <body>
 
     <?php require_once 'views/header.php' ?>
+    <?php require_once 'controllers/Prestamo.php' ?>
+    <?php require_once 'controllers/alumno.php' ?>
+
+    <?php 
+    
+        if(isset($_GET['noControl']))
+            $noControl = $_GET['noControl'];
+        else
+            $noControl = '';
+
+        $controllerAlumno = new Alumno();
+        $alumnoSeleccionado = $controllerAlumno->show($noControl);
+
+        foreach($alumnoSeleccionado as $alumno){
+            $nombreCompleto = $alumno->getNombre() . ' ' . $alumno->getApellidoPaterno() . ' ' . $alumno->getApellidoMaterno();
+
+    ?>
 
     <div class="container" style="margin-top:50px">
-        <h3>Jesús Julián Torres Velásquez</h3>
+        <h3><?php echo $nombreCompleto ?></h3>
         <small class="text-muted">Historial de préstamos</small>
     </div>
+
+    <?php 
+    
+        }
+    
+    ?>
 
     <div class="container">
     </div>
@@ -33,24 +56,27 @@
                 </tr>
             </thead>
             <tbody>
+
+            <?php 
+    
+                $controllerPrestamo = new Prestamo();
+                $listaPrestamo = $controllerPrestamo->show();
+
+                foreach($listaPrestamo as $prestamosHistorial){
+            ?>
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Túenes</td>
-                    <td>Ficción/Aventura</td>
-                    <td>12-12-2021</td>
-                    <td>16-12-2021</td>
-                    <td>0</td>
-                    <td>Sí</td>
+                    <th scope="row"><?php echo $prestamosHistorial['idprestamo']; ?></th>
+                    <td><?php echo $prestamosHistorial['nombre']; ?></td>
+                    <td><?php echo $prestamosHistorial['categoria']; ?></td>
+                    <td><?php echo $prestamosHistorial['fecinit']; ?></td>
+                    <td><?php echo $prestamosHistorial['fecfin']; ?></td>
+                    <td><?php echo $prestamosHistorial['norefrendo']; ?></td>
+                    <td><?php if ($prestamosHistorial['estado'] == 'Retrasado'){ ?> Sí <?php } else { ?> No <?php } ?></td>
                 </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Fundamentos de Java</td>
-                    <td>Ingeniería/Programación</td>
-                    <td>18-12-2021</td>
-                    <td>21-12-2021</td>
-                    <td>0</td>
-                    <td>No</td>
-                </tr>
+
+                <?php } ?>
+
             </tbody>
         </table>
         <a href="/SystemLibrary/alumno" class="btn btn-primary">Regresar</a>
