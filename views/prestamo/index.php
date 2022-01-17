@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/SystemLibrary/public/js-own/mensajes.js"></script>
+    <script src="/SystemLibrary/public/js-own/formularios.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Préstamos</title>
 </head>
@@ -35,6 +38,19 @@
         </form>
     </div>
 
+    <?php
+
+        //Importamos el controlador de catálogo:
+        require_once 'controllers/catalogo.php';
+
+        if(isset($_GET['error'])){
+            $error = $_GET['error']; 
+            
+    ?>
+
+        <script>muestraErrorAltaPrestamo(<?php echo $error ?>);</script> <?php } ?>
+
+
     <div class="container" style="margin-top:25px">
         <h5> <small class="text-muted"> Seleccione el tipo de registro que desea consultar </small> </h5>
     </div>
@@ -54,10 +70,11 @@
                                 <tr>
                                     <th scope="col" width="5%">Id</th>
                                     <th scope="col" width="30%">Libro</th>
-                                    <th scope="col" width="22%">Alumno</th>
-                                    <th scope="col" width="12%">Fec. Inicio</th>
-                                    <th scope="col" width="12%">Fec. Entrega</th>
-                                    <th scope="col" width="14%" style="text-align: center;">Acciones</th>
+                                    <th scope="col" width="20%">Alumno</th>
+                                    <th scope="col" width="10%">Fec. Inicio</th>
+                                    <th scope="col" width="10%">Fec. Entrega</th>
+                                    <th scope="col" style="text-align: center;">Tipo</th>
+                                    <th scope="col" colspan="2" style="text-align: center;">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,15 +95,78 @@
                                     <td><?php echo $nombreCompleto; ?></td>
                                     <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
                                     <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
-                                    <td>
-                                        <!-- Código para deshabilitar un link -->
-                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
-                                            <a href="alumno/edit" class="btn btn-outline-success btn-sm" style="cursor: not-allowed; pointer-events: none;">Refrendar</a>
-                                            <a href="alumno/edit" class="btn btn-outline-primary btn-sm" style="cursor: not-allowed; pointer-events: none;">Devolver</a>
-                                        </span>
-                                    </td>   
+                                    <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
+                                    <td style="text-align: center;">
+                                        <form action="/SystemLibrary/prestamo/refrendar" name="formRefrendarPrestamo" id="formRefrendarPrestamo" method="POST">
+                                            <input type="text" name="txtIdPrestamo" id="txtIdPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>     
+                                            <button type="submit" class="btn btn-outline-success btn-sm">Refrendar</button>
+                                        </form>                           
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <form action="/SystemLibrary/prestamo/devolver" name="formDevolverPrestamo"  method="POST" onsubmit="return confirmaDevolucionDeLibro(this);">
+                                            <input type="text" name="txtIdPrestamo" id="txtEstadoPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>     
+                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden> 
+                                            <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
+                                        </form>                           
+                                    </td>                                        
                                 </tr>
+    
+                            <?php } ?>
 
+                            </tbody>
+                        </table>
+                    </div>        
+                </div>
+            </div>
+            <div class="accordion" id="accordionPrestamos">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headerRetrasos">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#prestamosRetrasados" aria-expanded="true" aria-controls="prestamosRetrasados">
+                        Préstamos retrasados
+                    </button>
+                </h2>
+                <div id="prestamosRetrasados" class="accordion-collapse collapse" arial-labelledby="headerRetrasos" data-bs-parent="#accordionPrestamos">
+                    <div class="container" style="margin-top:25px;">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="5%">Id</th>
+                                    <th scope="col" width="30%">Libro</th>
+                                    <th scope="col" width="22%">Alumno</th>
+                                    <th scope="col" width="12%">Fec. Inicio</th>
+                                    <th scope="col" width="12%">Fec. Entrega</th>
+                                    <th scope="col" style="text-align: center;">Tipo</th>
+                                    <th scope="col" style="text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php 
+    
+                                $controllerPrestamo = new Prestamo();
+                                $listaPrestamo = $controllerPrestamo->show('Retrasado');
+
+                                foreach($listaPrestamo as $prestamoEnCurso){
+                                    $nombreCompleto = $prestamoEnCurso['alumnonombre'] . ' ' . $prestamoEnCurso['appaterno'] . ' ' . $prestamoEnCurso['apmaterno'];
+
+                            ?>
+
+                                <tr>
+                                    <th scope="row"><?php echo $prestamoEnCurso['idprestamo']; ?></th>
+                                    <td><?php echo $prestamoEnCurso['nombre']; ?></td>
+                                    <td><?php echo $nombreCompleto; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
+                                    <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
+                                    <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
+                                    <td style="text-align: center;">
+                                        <form action="/SystemLibrary/prestamo/devolver" name="formDevolverPrestamo"  method="POST" onsubmit="return confirmaDevolucionDeLibro(this);">
+                                            <input type="text" name="txtIdPrestamo" id="txtEstadoPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>
+                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden>     
+                                            <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
+                                        </form>                           
+                                    </td>                                        
+                                </tr>
+    
                             <?php } ?>
 
                             </tbody>
@@ -110,7 +190,8 @@
                                     <th scope="col" width="22%">Alumno</th>
                                     <th scope="col" width="12%">Fec. Inicio</th>
                                     <th scope="col" width="12%">Fec. Entrega</th>
-                                    <th scope="col" width="12%">Refrendar</th>
+                                    <th scope="col" style="text-align: center;">Tipo</th>
+                                    <th scope="col" width="12%" style="text-align: center">Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,11 +212,9 @@
                                     <td><?php echo $nombreCompleto; ?></td>
                                     <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
                                     <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
-                                    <td>
-                                        <!-- Código para deshabilitar un link -->
-                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
-                                            <a href="alumno/edit" class="btn btn-outline-success btn-sm" style="cursor: not-allowed; pointer-events: none;">Refrendar</a>
-                                        </span>
+                                    <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
+                                    <td style="text-align: center">
+                                       Finalizado
                                     </td>   
                                 </tr>
 

@@ -35,6 +35,12 @@ require_once 'controllers/error.php';
 
                } elseif($url[1] == 'eliminar'){
                    $controller -> eliminar();
+
+               } elseif($url[1] == 'refrendar'){
+                   $controller -> refrendar();
+
+               } elseif($url[1] == 'devolver'){
+                   $controller -> devolver();
                }
 
            } else {

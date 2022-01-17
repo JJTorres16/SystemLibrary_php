@@ -142,7 +142,7 @@ function confirmaCambiosAlumno(form){
     })
     .then((isOkay) => {
         if(isOkay){
-            swal("¡Los cambios se han guardado", {
+            swal("¡Los cambios se han guardado!", {
                 icon: "success",
             });
             document.formEditAlumno.submit();
@@ -178,4 +178,25 @@ function confirmaAltaPrestamo(form){
         } 
     });
     return false;
+}
+
+//Funciones especiales de acciones de préstamo (Refrendar o Devolver):
+
+function confirmaDevolucionDeLibro(form){
+        swal({
+            title: "¿Seguro que quieres retornar este préstamo",
+            icon:"info",
+            buttons: true,
+            //dangerMode: false,
+        })
+        .then((isOkay) => {
+            if(isOkay){
+                swal("¡Préstamo finalizado!", {
+                    icon: "success",
+                });
+                form.submit();
+                return true;
+            } 
+        });
+        return false;
 }

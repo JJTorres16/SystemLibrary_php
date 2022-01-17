@@ -83,7 +83,41 @@ class Prestamo extends Controller{
 
     }
 
-    function show($estado1='', $estado2=''){
+    function refrendar(){
+
+        $prestamoDAO = new PrestamoDAO();
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $idPrestamo = $_POST['txtIdPrestamo'];
+            $estado = $_POST['txtEstadoPrestamo'];
+
+            $prestamoDAO->refrendar($idPrestamo, $estado);
+
+        } else {
+            header('Location: /SystemLibrary/prestamo');
+
+        }
+    }
+
+    function devolver(){
+
+        $prestamoDAO = new PrestamoDAO();
+
+        if($_SERVER['REQUEST_METHOD'] = 'POST'){
+            $idPrestamo	= $_POST['txtIdPrestamo'];
+            $idLibro = $_POST['txtIdLibro'];
+
+            $prestamoDAO->devolverLibro($idPrestamo, $idLibro);
+
+            header('Location: /SystemLibrary/prestamo');
+
+        } else {
+            header('Location: /SystemLibrary/prestamo');
+
+        }
+    }
+
+    function show($estado=''){
         
         $prestamoDAO = new PrestamoDAO();
         $listaPrestamo = null;
@@ -101,7 +135,7 @@ class Prestamo extends Controller{
             $busqueda = $_GET['noControl'];
         }
 
-        $listaPrestamoEnCurso = $prestamoDAO->showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2);
+        $listaPrestamoEnCurso = $prestamoDAO->showPrestamo($criterioBusqueda, $busqueda, $estado);
 
         return $listaPrestamoEnCurso;
     }

@@ -32,5 +32,11 @@ function muestraErrorAltaPrestamo(numError){
 
         window.location.href = '/SystemLibrary/catalogo'
 
+    } else if(numError == 13){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El alumno no puede pedir más de dos refrendos'
+        })
     }
 }
