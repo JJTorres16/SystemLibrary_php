@@ -53,6 +53,16 @@
 
     <div class="container" style="margin-top:25px">
         <h5> <small class="text-muted"> Seleccione el tipo de registro que desea consultar </small> </h5>
+        <class class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Generar reporte
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="">Préstamos a Casa</a></li>
+                <li><a class="dropdown-item" href="">Préstamos a Sala</a></li>
+            </ul>
+        </class>
     </div>
 
     <div class="container" style="margin-top:15px">
