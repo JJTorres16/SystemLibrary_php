@@ -119,8 +119,10 @@
             
             //Crear un objeto de tipo DateTime():
             $objDateTime = new DateTime();
-            $fechaActual = $objDateTime->format('d-m-Y');
-            $fechaDevolucion = new DateTime($this->fecFin);
+            $objDateTimeDevolucion = new DateTime($this->fecFin);
+
+            $fechaActual = $objDateTime->format('Y-m-d');
+            $fechaDevolucion = $objDateTimeDevolucion->format('Y-m-d');
 
             if($fechaActual > $fechaDevolucion)
                 return true;
