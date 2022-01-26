@@ -89,10 +89,10 @@ class PrestamoDAO extends Model{
         else
             $stringBusqueda = "";
 
-        $query = "SELECT idprestamo, idlibro, tipo, LB.nombre, CTA.categoria, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
+        $query = "SELECT idprestamo, idlibro, tipo, retraso, LB.nombre, CTA.categoria, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
                   FROM prestamo INNER JOIN libros AS LB ON idlibro = idlibros INNER JOIN alumno as ALM ON alumnonocontrol = nocontrol
                   INNER JOIN categoria AS CTA ON LB.categoria = id_
-                  WHERE $stringBusqueda (estado = '$estado1')
+                  WHERE $stringBusqueda (estado LIKE '%$estado1%')
                   ORDER BY idprestamo";
                   
         return parent::getConnection()->query($query);
@@ -120,6 +120,20 @@ class PrestamoDAO extends Model{
 
         $query = "SELECT idprestamo, norefrendo FROM prestamo WHERE idprestamo = $idPrestamo";
         return parent::getConnection()->query($query);
+    }
+
+    
+    function cambiaEstadoRetrasado($idPrestamo){
+
+        $query = parent::getConnection()->prepare("UPDATE prestamo SET estado = ?, retraso = ?
+                                                   WHERE idprestamo = ?");
+
+        $query->execute(array(
+            'Retrasado',
+            1,
+            $idPrestamo,
+        ));
+
     }
 }
 

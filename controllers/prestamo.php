@@ -117,6 +117,18 @@ class Prestamo extends Controller{
         }
     }
 
+    function comparaFecha($idPrestamo, $fecDevolucion){
+
+        $prestamo = new ModeloPrestamo();
+        $prestamoDAO = new PrestamoDAO();
+
+        $prestamo->setFecFin($fecDevolucion); $prestamo->comparaFechas();
+
+        if($prestamo->comparaFechas())
+            $prestamoDAO->cambiaEstadoRetrasado($idPrestamo);
+    }
+
+
     function show($estado=''){
         
         $prestamoDAO = new PrestamoDAO();

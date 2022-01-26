@@ -72,7 +72,7 @@
                     <td><?php echo $prestamosHistorial['fecinit']; ?></td>
                     <td><?php echo $prestamosHistorial['fecfin']; ?></td>
                     <td><?php echo $prestamosHistorial['norefrendo']; ?></td>
-                    <td><?php if ($prestamosHistorial['estado'] == 'Retrasado'){ ?> Sí <?php } else { ?> No <?php } ?></td>
+                    <td><?php if ($prestamosHistorial['retraso'] == 1){ ?> Sí <?php } else { ?> No <?php } ?></td>
                 </tr>
 
                 <?php } ?>

@@ -44,8 +44,7 @@
         require_once 'controllers/catalogo.php';
 
         if(isset($_GET['error'])){
-            $error = $_GET['error']; 
-            
+            $error = $_GET['error'];            
     ?>
 
         <script>muestraErrorAltaPrestamo(<?php echo $error ?>);</script> <?php } ?>
@@ -92,11 +91,13 @@
                             <?php 
     
                                 $controllerPrestamo = new Prestamo();
-                                $listaPrestamo = $controllerPrestamo->show('En curso', 'Retrasado');
+                                $listaPrestamo = $controllerPrestamo->show('En curso');
 
                                 foreach($listaPrestamo as $prestamoEnCurso){
                                     $nombreCompleto = $prestamoEnCurso['alumnonombre'] . ' ' . $prestamoEnCurso['appaterno'] . ' ' . $prestamoEnCurso['apmaterno'];
 
+                                    $controllerPrestamo->comparaFecha($prestamoEnCurso['idprestamo'], $prestamoEnCurso['fecfin']);
+                            
                             ?>
 
                                 <tr>

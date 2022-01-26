@@ -115,6 +115,19 @@
             return $this->estado;
         }
 
+        function comparaFechas(){
+            
+            //Crear un objeto de tipo DateTime():
+            $objDateTime = new DateTime();
+            $fechaActual = $objDateTime->format('d-m-Y');
+            $fechaDevolucion = new DateTime($this->fecFin);
+
+            if($fechaActual > $fechaDevolucion)
+                return true;
+            else    
+                return false;
+        }
+
     }
 
 ?>
