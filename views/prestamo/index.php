@@ -82,8 +82,8 @@
                                     <th scope="col" width="20%">Alumno</th>
                                     <th scope="col" width="10%">Fec. Inicio</th>
                                     <th scope="col" width="10%">Fec. Entrega</th>
-                                    <th scope="col" style="text-align: center;">Tipo</th>
-                                    <th scope="col" colspan="2" style="text-align: center;">Acciones</th>
+                                    <th scope="col" width='10%' style="text-align: center;">Tipo</th>
+                                    <th scope="col" colspan="3" style="text-align: center;">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,6 +119,9 @@
                                             <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden> 
                                             <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
                                         </form>                           
+                                    </td>
+                                    <td>
+                                    <!--a href="/SystemLibrary/prestamo/detail?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-warning btn-sm">Detalles</a-->
                                     </td>                                        
                                 </tr>
     

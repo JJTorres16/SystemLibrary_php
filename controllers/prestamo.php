@@ -25,6 +25,10 @@ class Prestamo extends Controller{
         $this->view->render('prestamo/detail');
     }
 
+    function irVistaHistorial(){
+        $this->view->render('prestamo/historial');
+    }
+
     function agregar(){
 
         $modeloPrestamo = new ModeloPrestamo();

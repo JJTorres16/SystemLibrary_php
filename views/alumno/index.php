@@ -54,7 +54,7 @@
                     <th scope="col" width="17%">Carrera</th>
                     <th scope="col" width="21">E-mail</th>
                     <th scope="col" width="16%">Tel</th>
-                    <th scope="col" width="12%">Acciones</th>
+                    <th scope="col" width="12%" style="text-align: center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,9 +70,9 @@
                     <td><?php echo $alumno->getCarrera() ?></td>
                     <td><?php echo $alumno->getEmail() ?></td>
                     <td><?php echo $alumno->getTelefono() ?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <a href="/SystemLibrary/alumno/edit?noControl=<?php echo $alumno->getNoControl() ?>" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="/SystemLibrary/prestamo/detail?noControl=<?php echo $alumno->getNoControl() ?>" class="btn btn-outline-success btn-sm">Historial</a>
+                        <a href="/SystemLibrary/prestamo/historial?noControl=<?php echo $alumno->getNoControl() ?>" class="btn btn-outline-success btn-sm">Historial</a>
                     </td>
                 </tr>
             <?php 

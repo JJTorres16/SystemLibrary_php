@@ -27,6 +27,9 @@ require_once 'controllers/error.php';
                } elseif($url[1] == 'detail'){
                     $controller -> irVistaDetail();
 
+               } elseif($url[1] == 'historial'){
+                   $controller -> irVistaHistorial();
+
                } elseif($url[1] == 'agregar'){
                    $controller -> agregar();
                    
