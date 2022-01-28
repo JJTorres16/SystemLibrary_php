@@ -62,13 +62,13 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th scope="col" width="5%">Id</th>
+                    <th scope="col" width="4%">Id</th>
                     <th scope="col" width="25%">Libro</th>
-                    <th scope="col" width="20%">Categoria</th>
-                    <th scope="col" width="15%">Fec. inicio</th>
+                    <th scope="col" width="17%">Categoria</th>
+                    <th scope="col" width="12%">Fec. inicio</th>
                     <th scope="col" width="15">Fec. entrega</th>
                     <th scope="col" width="10%">Tipo</th>
-                    <th scope="col" colspan="2" width="10%" style="text-align: center;">Acciones</th>
+                    <th scope="col" colspan="3" width="10%" style="text-align: center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,6 +107,9 @@
                             <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
                         </form>
                     </td>
+                    <td style="text-align: center">
+                        <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamosHistorial['idprestamo']; ?>" class="btn btn-outline-danger btn-sm">Detalles</a>
+                    </td>
                 </tr>
 
                 <?php } ?>
@@ -125,14 +128,15 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" width="5%">Id</th>
+                            <th scope="col" width="4%">Id</th>
                             <th scope="col" width="25%">Libro</th>
-                            <th scope="col" width="20%">Categoria</th>
-                            <th scope="col" width="15%">Fec. inicio</th>
-                            <th scope="col" width="15">Fec. entrega</th>
-                            <th scope="col" width="7%" style="text-align: center;">Tipo</th>
-                            <th scope="col" width="7%">Refrendos</th>
+                            <th scope="col" width="16%">Categoria</th>
+                            <th scope="col" width="12%">Fec. inicio</th>
+                            <th scope="col" width="12%">Fec. entrega</th>
+                            <th scope="col" width="5%" style="text-align: center;">Tipo</th>
+                            <th scope="col" width="5%">Refrendos</th>
                             <th scope="col" width="10%" style="text-align: center;">Estado</th>
+                            <th scope="col" width="12%" style="text-align: center">Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,6 +160,9 @@
                     <td style="text-align: center;">
                             <?php if($prestamosHistorial['retraso'] == 1){ ?> Finalizado con Retraso <?php } else {  ?>
                             Finalizado <?php } ?>
+                    </td>
+                    <td style="text-align: center">
+                        <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamosHistorial['idprestamo']; ?>" class="btn btn-outline-primary btn-sm">Detalles</a>
                     </td>
                 </tr>
 

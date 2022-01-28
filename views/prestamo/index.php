@@ -125,7 +125,7 @@
                                         </form>                           
                                     </td>
                                     <td>
-                                    <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-warning btn-sm">Detalles</a>
+                                        <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-danger btn-sm">Detalles</a>
                                     </td>                                        
                                 </tr>
     
@@ -154,7 +154,7 @@
                                     <th scope="col" width="12%">Fec. Inicio</th>
                                     <th scope="col" width="12%">Fec. Entrega</th>
                                     <th scope="col" style="text-align: center;">Tipo</th>
-                                    <th scope="col" style="text-align: center;">Acciones</th>
+                                    <th scope="col" colspan="2" style="text-align: center;">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,6 +182,9 @@
                                             <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden>     
                                             <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
                                         </form>                           
+                                    </td>
+                                    <td>
+                                        <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-danger btn-sm">Detalles</a>
                                     </td>                                        
                                 </tr>
     
@@ -210,6 +213,7 @@
                                     <th scope="col" width="12%">Fec. Entrega</th>
                                     <th scope="col" style="text-align: center;">Tipo</th>
                                     <th scope="col" width="12%" style="text-align: center">Estado</th>
+                                    <th scope="col" width="12%" style="text-align: center">Detalles</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -232,8 +236,16 @@
                                     <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
                                     <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
                                     <td style="text-align: center">
-                                       Finalizado
-                                    </td>   
+                                            <?php 
+                                                if($prestamoEnCurso['retraso'] == 1) 
+                                                    echo 'Finalizado con Retraso';  
+                                                else  
+                                                    echo 'Finalizado'; 
+                                            ?>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-primary btn-sm">Detalles</a>
+                                    </td>  
                                 </tr>
 
                             <?php } ?>
