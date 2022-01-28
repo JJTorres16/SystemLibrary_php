@@ -83,6 +83,8 @@
                                     <!--p class="card-text"><?php //echo $row->getSinopsis() ?></p--> 
                                     <p class="card-title"> <b>Autor:</b> <?php echo $row->getAutor() ?></p>
                                     <p class="card-title"> <b>Año:</b> <?php echo $row->getAnio() ?></p>
+                                    <p class="card-title"> <b>ISBN:</b> <?php echo $row->getISBN() ?></p>
+                                    <p></p>
     
                                     <?php  if($row->getCantidad() >= 4){ ?>
 
