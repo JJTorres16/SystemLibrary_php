@@ -125,7 +125,7 @@
                                         </form>                           
                                     </td>
                                     <td>
-                                    <!--a href="/SystemLibrary/prestamo/detail?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-warning btn-sm">Detalles</a-->
+                                    <a href="/SystemLibrary/prestamo/details?idPrestamo=<?php echo $prestamoEnCurso['idprestamo']; ?>" class="btn btn-outline-warning btn-sm">Detalles</a>
                                     </td>                                        
                                 </tr>
     

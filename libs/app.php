@@ -24,7 +24,7 @@ require_once 'controllers/error.php';
                } elseif ($url[1] == 'edit'){
                    $controller -> irVistaEdit();
 
-               } elseif($url[1] == 'detail'){
+               } elseif($url[1] == 'details'){
                     $controller -> irVistaDetail();
 
                } elseif($url[1] == 'historial'){

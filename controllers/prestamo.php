@@ -22,7 +22,7 @@ class Prestamo extends Controller{
     }
 
     function irVistaDetail(){
-        $this->view->render('prestamo/detail');
+        $this->view->render('prestamo/details');
     }
 
     function irVistaHistorial(){
@@ -127,6 +127,18 @@ class Prestamo extends Controller{
             header('Location: /SystemLibrary/prestamo');
 
         }
+    }
+
+    function consultaDetalles(){
+
+        $prestamoDAO = new PrestamoDAO();
+        $idPrestamo = '';
+
+        if(isset($_GET['idPrestamo']))
+            $idPrestamo = $_GET['idPrestamo'];
+
+        $presamoSeleccionado = $prestamoDAO->detallePrestamo($idPrestamo);
+        return $presamoSeleccionado;
     }
 
     function comparaFecha($idPrestamo, $fecDevolucion){
