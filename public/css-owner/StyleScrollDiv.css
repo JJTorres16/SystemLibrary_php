@@ -1,0 +1,6 @@
+.div-scroll{
+    background-color: #FFF;
+    max-height: 900px;
+    padding: 10px;
+    overflow-y: scroll;
+}

@@ -109,14 +109,18 @@
                                     <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
                                     <td style="text-align: center;">
                                         <form action="/SystemLibrary/prestamo/refrendar" name="formRefrendarPrestamo" id="formRefrendarPrestamo" method="POST">
-                                            <input type="text" name="txtIdPrestamo" id="txtIdPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>     
+                                            <input type="text" name="txtIdPrestamo" id="txtIdPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>
+                                            <input type="text" name="txtNoControl" id="txtNoControl" value="<?php echo $prestamoEnCurso['alumnonocontrol'] ?>" hidden>
+                                            <input type="text" name="txtOrigen" id="txtOrigen" value="prestamo" hidden>     
                                             <button type="submit" class="btn btn-outline-success btn-sm">Refrendar</button>
                                         </form>                           
                                     </td>
                                     <td style="text-align: center;">
                                         <form action="/SystemLibrary/prestamo/devolver" name="formDevolverPrestamo"  method="POST" onsubmit="return confirmaDevolucionDeLibro(this);">
                                             <input type="text" name="txtIdPrestamo" id="txtEstadoPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>     
-                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden> 
+                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden>
+                                            <input type="text" name="txtNoControl" id="txtNoControl" value="<?php echo $prestamoEnCurso['alumnonocontrol'] ?>" hidden>
+                                            <input type="text" name="txtOrigen" id="txtOrigen" value="prestamo" hidden> 
                                             <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
                                         </form>                           
                                     </td>

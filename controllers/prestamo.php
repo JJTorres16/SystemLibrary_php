@@ -71,7 +71,7 @@ class Prestamo extends Controller{
             }
             
             if($cantPrestamo == 2)
-                header('Location: /SystemLibrary/prestamo/add?idLibro='.$idLibro.'&tipo='.$tipoPrestamo.'&error=11');
+                header('Location: /SystemLibrary/prestamo/historial?noControl='.$noControlAlumno.'&error=11');
 
             else {
                 if($mismoLibro > 0){       
@@ -94,8 +94,10 @@ class Prestamo extends Controller{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $idPrestamo = $_POST['txtIdPrestamo'];
             $estado = $_POST['txtEstadoPrestamo'];
+            $alumnoNoControl = $_POST['txtNoControl'];
+            $origen = $_POST['txtOrigen'];
 
-            $prestamoDAO->refrendar($idPrestamo, $estado);
+            $prestamoDAO->refrendar($idPrestamo, $origen, $alumnoNoControl);
 
         } else {
             header('Location: /SystemLibrary/prestamo');
@@ -110,10 +112,16 @@ class Prestamo extends Controller{
         if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $idPrestamo	= $_POST['txtIdPrestamo'];
             $idLibro = $_POST['txtIdLibro'];
+            $alumnoNoControl = $_POST['txtNoControl'];
+            $origen = $_POST['txtOrigen'];
 
             $prestamoDAO->devolverLibro($idPrestamo, $idLibro);
 
-            header('Location: /SystemLibrary/prestamo');
+            
+            if($origen == 'prestamo')
+                header('Location: /SystemLibrary/prestamo');
+            else
+                header('Location: /SystemLibrary/prestamo/historial?noControl='.$alumnoNoControl.'');
 
         } else {
             header('Location: /SystemLibrary/prestamo');
@@ -133,7 +141,7 @@ class Prestamo extends Controller{
     }
 
 
-    function show($estado=''){
+    function show($estado1='', $estado2=''){
         
         $prestamoDAO = new PrestamoDAO();
         $listaPrestamo = null;
@@ -151,10 +159,11 @@ class Prestamo extends Controller{
             $busqueda = $_GET['noControl'];
         }
 
-        $listaPrestamoEnCurso = $prestamoDAO->showPrestamo($criterioBusqueda, $busqueda, $estado);
+        $listaPrestamoEnCurso = $prestamoDAO->showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2);
 
         return $listaPrestamoEnCurso;
     }
+
 }
 
 ?>

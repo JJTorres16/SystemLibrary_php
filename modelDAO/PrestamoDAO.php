@@ -40,7 +40,7 @@ class PrestamoDAO extends Model{
         
     }
 
-    function refrendar($idPrestamo, ){
+    function refrendar($idPrestamo, $origen, $alumnoNoControl){
         
         $query = parent::getConnection()->prepare("UPDATE prestamo SET norefrendo = (SELECT norefrendo FROM prestamo WHERE idprestamo = ?) + 1,
                                                    fecfin = (SELECT fecfin FROM prestamo WHERE idprestamo = ?) + INTERVAL '3 days'  
@@ -53,13 +53,19 @@ class PrestamoDAO extends Model{
                 $idPrestamo
             ));
 
-            header('Location: /SystemLibrary/prestamo');
+            if($origen == 'prestamo')
+                header('Location: /SystemLibrary/prestamo');
+            else
+                header('Location: /SystemLibrary/prestamo/historial?noControl='.$alumnoNoControl.'');
         
         } catch(PDOException $e) {
             if($e->getCode() == '23514'){
                 $numError = 13;
-                header('Location: /SystemLibrary/prestamo?error='.$numError.'');
 
+                if($origen == 'prestamo')
+                    header('Location: /SystemLibrary/prestamo?error='.$numError.'');
+                else
+                    header('Location: /SystemLibrary/prestamo/historial?error='.$numError.'&noControl='.$alumnoNoControl.'');
             }
 
         }
@@ -78,21 +84,20 @@ class PrestamoDAO extends Model{
         $catalogoDAO = new CatalogoDAO();
         $catalogoDAO->sumaUnLibro($idLibro);
 
-
     }
 
 
-    function showPrestamo($criterioBusqueda, $busqueda, $estado1){
+    function showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2){
 
         if($criterioBusqueda!="")
             $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") = LOWER('" . $busqueda . "') AND ";
         else
             $stringBusqueda = "";
 
-        $query = "SELECT idprestamo, idlibro, tipo, retraso, LB.nombre, CTA.categoria, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
+        $query = "SELECT idprestamo, alumnonocontrol, idlibro, tipo, retraso, LB.nombre, CTA.categoria, ALM.nombre AS alumnoNombre, ALM.appaterno, ALM.apmaterno, fecinit, fecfin, norefrendo, estado 
                   FROM prestamo INNER JOIN libros AS LB ON idlibro = idlibros INNER JOIN alumno as ALM ON alumnonocontrol = nocontrol
                   INNER JOIN categoria AS CTA ON LB.categoria = id_
-                  WHERE $stringBusqueda (estado LIKE '%$estado1%')
+                  WHERE $stringBusqueda (estado = '$estado1' OR estado = '$estado2')
                   ORDER BY idprestamo";
                   
         return parent::getConnection()->query($query);
@@ -135,6 +140,22 @@ class PrestamoDAO extends Model{
         ));
 
     }
+
+    /*function consultaHistorial($noControl, $estado1, $estado2){
+
+        $query = parent::getConnection()->prepare("SELECT * FROM prestamo WHERE alumnonocontrol = ? 
+                                                   AND (estado = ? OR estado = ?)");
+
+       $query->execute(array(
+            $noControl,
+            $estado1,
+            $estado2
+       ));
+
+        $prestamo = $query->fetchAll();
+
+        return $prestamo;
+    }*/
 }
 
 
