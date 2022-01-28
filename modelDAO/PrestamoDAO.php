@@ -144,7 +144,7 @@ class PrestamoDAO extends Model{
 
     function detallePrestamo($idPrestamo){
 
-        $query = parent::getConnection()->prepare("SELECT idprestamo, fecinit, fecfin, observaciones, alumnonocontrol, estado, retraso, LBR.portada, LBR.isbn, LBR.autor, LBR.formato, LBR.nombre AS nombrelibro,
+        $query = parent::getConnection()->prepare("SELECT idprestamo, fecinit, fecfin, observaciones, alumnonocontrol, estado, retraso, tipo, norefrendo, LBR.portada, LBR.isbn, LBR.autor, LBR.formato, LBR.nombre AS nombrelibro,
                                                    ALO.nombre AS nombrealumno, ALO.appaterno, ALO.apmaterno, ALO.carrera, CTA.categoria
                                                    FROM prestamo INNER JOIN libros AS LBR ON idlibro = idlibros INNER JOIN alumno AS ALO ON alumnonocontrol = nocontrol
                                                    INNER JOIN categoria AS CTA ON LBR.categoria = id_

@@ -135,10 +135,22 @@
                                 <div class="col">
                                     <label for="" class="form-label"><strong>Observaciones:</strong></label>
                                 </div>
+                                <div class="col">
+                                    <label for="" class="form-label"><strong>Tipo de préstamo:</strong></label>
+                                </div>
+                                <div class="col">
+                                    <label for="" class="form-label"><strong>Total de refrendos:</strong></label>
+                                </div>
                            </div>
                            <div class="row">
                                 <div class="col">
                                     <?php echo $prestamo['observaciones'] ?>
+                               </div>
+                               <div class="col">
+                                    <?php echo $prestamo['tipo'] ?>
+                               </div>
+                               <div class="col">
+                                    <?php echo $prestamo['norefrendo'] ?>
                                </div>
                            </div>
                         </div>
