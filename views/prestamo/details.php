@@ -168,7 +168,7 @@
     </div>
 
     <div class="container" style="margin-top: 25px;">
-        <a href="/SystemLibrary/alumno" class="btn btn-primary">Regresar</a>
+        <a href="javascript: history.go(-1)" class="btn btn-primary">Regresar</a>
     </div>
     
 </body>
