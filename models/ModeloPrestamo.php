@@ -17,7 +17,7 @@
         // Métodos getter y setter
 
         // Id del préstamo
-        function setIdPrestamo($idPrestamo){
+        function setIdPrestamo($idPrestamo, $html){
             $this->idPrestamo = $idPrestamo;
         }
 
@@ -128,6 +128,10 @@
                 return true;
             else    
                 return false;
+        }
+
+        function generaPDFreporte(){
+
         }
 
     }

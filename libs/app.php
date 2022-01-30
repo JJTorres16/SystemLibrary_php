@@ -44,6 +44,9 @@ require_once 'controllers/error.php';
 
                } elseif($url[1] == 'devolver'){
                    $controller -> devolver();
+
+               } elseif($url[1] == 'reporte'){
+                   $controller -> irVistaReporte();
                }
 
            } else {

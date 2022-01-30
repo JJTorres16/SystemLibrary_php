@@ -3,6 +3,8 @@
 require_once 'models/ModeloPrestamo.php';
 require_once 'modelDAO/PrestamoDAO.php';
 require_once 'modelDAO/CatalogoDAO.php';
+require_once './public/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
 
 class Prestamo extends Controller{
     function __construct(){
@@ -27,6 +29,10 @@ class Prestamo extends Controller{
 
     function irVistaHistorial(){
         $this->view->render('prestamo/historial');
+    }
+
+    function irVistaReporte(){
+        $this->view->render('prestamo/reporte');
     }
 
     function agregar(){
@@ -139,6 +145,23 @@ class Prestamo extends Controller{
 
         $presamoSeleccionado = $prestamoDAO->detallePrestamo($idPrestamo);
         return $presamoSeleccionado;
+    }
+
+    function reportePrestamo(){
+
+        $prestamoDAO = new PrestamoDAO();
+        $tipo = '';
+
+        if(isset($_GET['tipo']))
+            $tipo = $_GET['tipo'];
+
+        $listaPrestamo = $prestamoDAO->reportePrestamo($tipo);
+        return $listaPrestamo;
+    }
+
+
+    function generaReportePDF($html){
+
     }
 
     function comparaFecha($idPrestamo, $fecDevolucion){

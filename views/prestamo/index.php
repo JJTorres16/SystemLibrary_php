@@ -58,8 +58,8 @@
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="">Préstamos a Casa</a></li>
-                <li><a class="dropdown-item" href="">Préstamos a Sala</a></li>
+                <li><a class="dropdown-item" href="/SystemLibrary/prestamo/reporte?tipo=casa">Préstamos a Casa</a></li>
+                <li><a class="dropdown-item" href="/SystemLibrary/prestamo/reporte?tipo=sala">Préstamos a Sala</a></li>
             </ul>
         </class>
     </div>
