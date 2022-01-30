@@ -129,11 +129,6 @@
             else    
                 return false;
         }
-
-        function generaPDFreporte(){
-
-        }
-
     }
 
 ?>

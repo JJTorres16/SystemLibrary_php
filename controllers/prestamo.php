@@ -3,8 +3,6 @@
 require_once 'models/ModeloPrestamo.php';
 require_once 'modelDAO/PrestamoDAO.php';
 require_once 'modelDAO/CatalogoDAO.php';
-require_once './public/dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
 
 class Prestamo extends Controller{
     function __construct(){
