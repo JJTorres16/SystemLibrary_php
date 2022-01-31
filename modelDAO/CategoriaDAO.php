@@ -7,9 +7,12 @@ class CategoriaDAO extends Model{
 
     function show(){
 
-        $query = "SELECT * FROM categoria";
+        $query = parent::getConnection()->prepare("SELECT * FROM categoria");
+        $query->execute();
 
-        return parent::getConnection()->query($query);
+        $listaCategoria = $query->fetchAll();
+
+        return $listaCategoria;
 
     }
 

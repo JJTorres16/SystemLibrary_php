@@ -34,12 +34,26 @@ class CatalogoDAO extends Model{
     
     function show($busqueda, $categoria){
 
-        if($categoria > 0)
-            $query = "SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER('%$busqueda%') AND categoria = $categoria ORDER BY nombre ASC";
-        else
-            $query = "SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER('%$busqueda%') ORDER BY nombre ASC";
+        if($categoria > 0){
+            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) AND categoria = ? ORDER BY nombre ASC");
+            $query->execute(array(
+                '%'.$busqueda.'%',
+                $categoria
+            ));
 
-            return parent::getConnection()->query($query);
+            $listaLibros = $query->fetchAll();
+
+        } else {
+            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre ASC");
+            $query->execute(array(
+                '%'.$busqueda.'%'
+            ));
+
+            $listaLibros = $query->fetchAll();
+
+        }
+
+        return $listaLibros;
     }
 
     function showDetail($id){

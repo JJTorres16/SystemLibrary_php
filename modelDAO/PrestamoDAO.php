@@ -90,7 +90,7 @@ class PrestamoDAO extends Model{
     function showPrestamo($criterioBusqueda, $busqueda, $estado1, $estado2){
 
         if($criterioBusqueda!="")
-            $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") = LOWER('" . $busqueda . "') AND ";
+            $stringBusqueda = 'LOWER(' . $criterioBusqueda . ") LIKE LOWER('%" . $busqueda . "%') AND ";
         else
             $stringBusqueda = "";
 
@@ -107,24 +107,49 @@ class PrestamoDAO extends Model{
 
     function consultaExistencias($noControlAlumno, $idLibro){
 
-        $query = "SELECT COUNT(alumnonocontrol) FROM prestamo WHERE alumnonocontrol = '$noControlAlumno' AND idlibro = $idLibro AND 
-                         (estado = 'En curso' OR estado = 'Retrasado');";
-        return parent::getConnection()->query($query); // Regresa la cantidad de filas que corresponden a esa descripción
+        $query = parent::getConnection()->prepare("SELECT COUNT(alumnonocontrol) FROM prestamo WHERE alumnonocontrol = ? AND idlibro = ? AND 
+                                                   (estado = ? OR estado = ?);");
+
+        $query->execute(array(
+            $noControlAlumno,
+            $idLibro,
+            'En curso',
+            'Retrasado'
+        ));
+
+        $listaExistencias = $query->fetchAll();
+
+        return $listaExistencias; // Regresa la cantidad de filas que corresponden a esa descripción
     }
 
 
     function cantPrestamosAlumno($noControlAlumno){
 
-        $query = "SELECT COUNT(idprestamo) FROM prestamo WHERE alumnonocontrol = '$noControlAlumno'
-                  AND (estado = 'En curso' OR estado = 'Retrasado')";
-        return parent::getConnection()->query($query);
+        $query = parent::getConnection()->prepare("SELECT COUNT(idprestamo) FROM prestamo WHERE alumnonocontrol = ?
+                                                   AND (estado = ? OR estado = ?)");
+
+        $query->execute(array(
+            $noControlAlumno,
+            'En curso',
+            'Retrasado'
+        ));
+
+        $cantPrestamosAlumno = $query->fetchAll(); 
+
+        return $cantPrestamosAlumno;
     }
     
 
     function consultaRefrendos($idPrestamo){
 
-        $query = "SELECT idprestamo, norefrendo FROM prestamo WHERE idprestamo = $idPrestamo";
-        return parent::getConnection()->query($query);
+        $query = parent::getConnection()->prepare("SELECT idprestamo, norefrendo FROM prestamo WHERE idprestamo = ?");
+
+        $query->execute(array(
+            $idPrestamo
+        ));
+
+        $listaRefrendos = $query->fetchAll();
+        return $listaRefrendos;
     }
 
     
@@ -163,7 +188,7 @@ class PrestamoDAO extends Model{
                                                    ALO.nombre AS nombrealumno, ALO.appaterno, ALO.apmaterno, ALO.carrera, CTA.categoria
                                                    FROM prestamo INNER JOIN libros AS LBR ON idlibro = idlibros INNER JOIN alumno AS ALO ON alumnonocontrol = nocontrol
                                                    INNER JOIN categoria AS CTA ON LBR.categoria = id_
-                                                   WHERE tipo = ? ORDER BY idprestamo");
+                                                   WHERE tipo = ? ORDER BY fecinit DESC");
 
         
         $query ->execute(array($tipo));

@@ -57,8 +57,14 @@ class AlumnoDAO extends Model{
 
     function show($noControl){
         
-        $query = "SELECT * FROM alumno WHERE nocontrol LIKE '%$noControl%' ORDER BY appaterno, nombre";
-        return parent::getConnection()->query($query);
+        $query = parent::getConnection()->prepare("SELECT * FROM alumno WHERE nocontrol LIKE ? ORDER BY appaterno, nombre");
+
+        $query->execute(array(
+            '%'.$noControl.'%'
+        ));
+
+        $listaAlumnos = $query->fetchAll();
+        return $listaAlumnos;
     }
 
 }
