@@ -20,15 +20,6 @@
     <div class="d-flex felx-row justify-content-center align-items-center">
             <small class="text-muted">Edita libros o añade nuevos al stock</small>
     </div><br>
-
-    <?php
-
-        if(isset($_GET['categoria']))
-            $_SESSION['categoria'] = $_GET['categoria'];
-        else
-            $_SESSION['categoria'] = 0;
-                
-    ?>
   
     <div class="container">
         <div class="row justify-content-center">

@@ -88,7 +88,7 @@ class Catalogo extends Controller {
         else
             $busqueda = "";
 
-        $queryCatalogo = $catalogoDAO->show($busqueda, $_SESSION['categoria']);
+        $queryCatalogo = $catalogoDAO->show($busqueda, $_GET['categoria']);
 
         foreach($queryCatalogo as $row){
             $modelCat = new ModeloCatalogo();

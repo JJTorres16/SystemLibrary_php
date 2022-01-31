@@ -44,7 +44,12 @@ class Prestamo extends Controller{
             $text_fechaDeInicio = $_POST['dateFechaInicio'];
             $text_fechaDeFin = $_POST['dateFinPrestamo'];
             $tipoPrestamo = $_POST['txtTipoPrestamo']; // Casa o Sala -> Falta colocar el campo en el formulario (hidden)
-            $observaciones = $_POST['areaObservPrestamo'];
+            
+            //Comprobamos si se escribió alguna observación:
+            if($_POST['areaObservPrestamo'] != "")
+                $observaciones = $_POST['areaObservPrestamo'];
+            else
+                $observaciones = "Sin observaciones";
 
             //Convertimos las fechas dadas en el formulario a formato fecha. Objeto DateTime:
             $obj_fechaDeInicio = DateTime::createFromFormat('d/m/Y', $text_fechaDeInicio);
