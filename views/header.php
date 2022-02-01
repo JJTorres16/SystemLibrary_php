@@ -43,14 +43,14 @@
 
                             ?>
 
-                            <li><a href="/SystemLibrary/catalogo?categoria=<?php echo $categoria->getId(); ?>" class="dropdown-item"><?php echo $nameCategoria[1]; ?></a></li>
+                            <li><a href="/SystemLibrary/catalogo?categoria=<?php echo $categoria->getId() ?>&pag=0" class="dropdown-item"><?php echo $nameCategoria[1]; ?></a></li>
                             
                             <?php
                                 }
                             ?>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a href="/SystemLibrary/catalogo?categoria=0" class="dropdown-item">Todo</a></li>
+                            <li><a href="/SystemLibrary/catalogo?categoria=0&pag=0" class="dropdown-item">Todo</a></li>
                         
                         </ul>
                     </li>

@@ -43,11 +43,18 @@
 
 
         $conCatalogo = new Catalogo();
+
+        $totalPaginas = $conCatalogo->setCantPaginas();
         $catalogo = $conCatalogo->showAll();
+
+        $categoria = $_GET['categoria'];
+        $pag = $_GET['pag'];
+
+        echo $pag;
 
     ?>
 
-    <div class="row" style="margin-top:50px; margin-bottom:25px; margin-left: 110px;">
+    <div class="row" style="margin-top:50px; margin-bottom:25px; margin-left: 200px;">
 
         <?php 
             foreach($catalogo as $row) { 
@@ -55,7 +62,7 @@
         ?>
     
    
-        <div class="col-md-4" style="margin-bottom: 20px;">
+        <div class="col-md-4" style="margin-bottom: 25px;">
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $ruteCover ?>" class="card-img-top" alt="" height="400px" id="coverPhoto">
                 <div class="accordion" id="accordionPannel">
@@ -99,6 +106,28 @@
         ?>
 
     </div>
+
+    <nav aria-label="Page navigation example" style="margin-right: 25px;">
+        <ul class="pagination justify-content-center" style="color:#8F3A84">
+            <li <?php if($pag == 0){ ?> class="page-item disabled" <?php } else { ?> class="page-item" <?php } ?> >
+                <a class="page-link" href="#" tabindex="-1" <?php if($pag == 0){ ?> aria-disabled="true" <?php } ?> style="color:#8F3A84">Previous</a>
+            </li>
+
+            <?php for ($i = ($pag + 1); $i < 5; $i++){ ?>
+                <li class="page-item"><a class="page-link" href="/SystemLibrary/catalogo?categoria=<?php echo $categoria ?>&pag=0" style="color:#8F3A84"> <?php echo $i ?> </a></li>            
+            
+            <?php 
+                    if($i == $totalPaginas)
+                        break;                  
+                } 
+            
+            ?>
+
+                <li <?php if(($pag + 1) == $totalPaginas){ ?> class="page-item disabled" <?php } else { ?> class="page-item" <?php } ?> >
+                 <a class="page-link" href="#" style="color:#8F3A84">Next</a>
+            </li>
+        </ul>
+    </nav>
 
     <?php //require 'views/footer.php'; ?>
 </body>

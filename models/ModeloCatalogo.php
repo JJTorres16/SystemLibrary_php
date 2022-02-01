@@ -143,6 +143,13 @@
         function getEditorial(){
             return $this->editorial;
         }
+
+        function totalPaginas($totalLibros){
+
+            $totalPaginas = ceil($totalLibros/9); // Con ceil() se redondea el resultado
+
+            return $totalPaginas;
+        }
     }
 
 ?>

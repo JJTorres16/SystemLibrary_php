@@ -32,21 +32,25 @@ class CatalogoDAO extends Model{
 
     }
     
-    function show($busqueda, $categoria){
+    function show($busqueda, $categoria, $offset, $limite){
 
         if($categoria > 0){
-            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) AND categoria = ? ORDER BY nombre ASC");
+            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) AND categoria = ? ORDER BY nombre ASC OFFSET ? LIMIT ?");
             $query->execute(array(
                 '%'.$busqueda.'%',
-                $categoria
+                $categoria,
+                $offset,
+                $limite
             ));
 
             $listaLibros = $query->fetchAll();
 
         } else {
-            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre ASC");
+            $query = parent::getConnection()->prepare("SELECT DISTINCT * FROM libros WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre ASC OFFSET ? LIMIT ?");
             $query->execute(array(
-                '%'.$busqueda.'%'
+                '%'.$busqueda.'%',
+                $offset,
+                $limite
             ));
 
             $listaLibros = $query->fetchAll();
@@ -58,9 +62,26 @@ class CatalogoDAO extends Model{
 
     function showDetail($id){
 
-        $query = "SELECT * FROM libros WHERE idlibros =" . $id . ";";
-        return parent::getConnection()->query($query);
+        $query = parent::getConnection()->prepare("SELECT * FROM libros WHERE idlibros = ?;");
+        $query->execute(array(
+            $id
+        ));
+
+        $libroSeleccionado = $query->fetchAll();
+
+        return $libroSeleccionado;
     }
+
+    function totalLibros(){
+
+        $query = parent::getConnection()->prepare("SELECT COUNT(idlibros) FROM libros");
+        $query->execute();
+
+        $totalLibros = $query->fetchAll();
+
+        return $totalLibros;
+    }
+    
 
     function edit($catalogo){
 

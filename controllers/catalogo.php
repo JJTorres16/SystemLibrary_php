@@ -88,7 +88,24 @@ class Catalogo extends Controller {
         else
             $busqueda = "";
 
-        $queryCatalogo = $catalogoDAO->show($busqueda, $_GET['categoria']);
+        if(isset($_GET['categoria']))
+            $categoria = $_GET['categoria'];
+        else
+            $categoria = "";
+
+        if(isset($_GET['pag'])) {
+            $pag = $_GET['pag'];
+            if ($pag < 0)
+                $pag = 0;
+
+        } else
+            $pag = 0;
+
+        //Establecer el límte y el offset
+        $offset = (($pag)*9);
+        $limite = $offset + 9;
+
+        $queryCatalogo = $catalogoDAO->show($busqueda, $categoria, $offset, $limite);
 
         foreach($queryCatalogo as $row){
             $modelCat = new ModeloCatalogo();
@@ -221,6 +238,23 @@ class Catalogo extends Controller {
         }
 
         header('Location: /SystemLibrary/catalogo');
+    }
+
+
+    function setCantPaginas(){
+
+        $catalogoDAO = new CatalogoDAO();
+        $modeloCatalogo = new ModeloCatalogo();
+
+        $queryTotalLibros = $catalogoDAO->totalLibros();
+
+        foreach($queryTotalLibros as $cant)
+            $totalLibros = $cant['count'];
+
+        $totalPaginas = $modeloCatalogo->totalPaginas($totalLibros);
+
+        return  $totalPaginas;
+         
     }
 }
 
