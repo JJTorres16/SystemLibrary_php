@@ -9,7 +9,21 @@
     <title>Alta de libros</title>
 </head>
 <body>
-    <?php require_once  'views/header.php'; ?>
+    <?php 
+    
+        require_once  'views/header.php';
+
+        if(isset($_GET['categoria']))
+            $categoria = $_GET['categoria'];
+        else
+            $categoria = 0;
+
+        if(isset($_GET['pag']))
+            $pag = $_GET['pag'];
+        else
+            $pag = 0;
+        
+    ?>
 
     <div class="container" style="margin-top:50px;">
         <h2>Alta de material bibliográfico</h2>
@@ -135,7 +149,7 @@
                 <label for="txtAreaSinposis" class="form-label">Sinpósis:</label>
                 <textarea class="md-textarea form-control" name="txtAreaSinposis" id="txtAreaSinposis" cols="30" rows="5" requiered></textarea>
                 <br><button class="btn btn-success" name="agregar" type="submit">Agregar</button> 
-                <a class="btn btn-danger" href="/SystemLibrary/catalogo">Cancelar</a>
+                <a class="btn btn-danger" href="/SystemLibrary/catalogo?categoria=<?php echo $categoria ?>&pag=<?php echo $pag ?>">Cancelar</a>
             </div>
             <div class="col-12"></div>
         </form>

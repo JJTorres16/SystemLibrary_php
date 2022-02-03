@@ -28,6 +28,16 @@ class Catalogo extends Controller {
     function agregar(){
         $modelCat = new ModeloCatalogo();
         $catDAO = new CatalogoDAO();
+
+        if(isset($_GET['categoria']))
+            $categoria = $_GET['categoria'];
+        else
+            $categoria = 0;
+
+        if(isset($_GET['pag']))
+            $pag = $_GET['pag'];
+        else
+            $pag = 0;
         
         //Variables del nuevo libro
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -73,7 +83,7 @@ class Catalogo extends Controller {
             $catDAO->add($modelCat);
         }
 
-        header('Location: /SystemLibrary/catalogo');
+        header('Location: /SystemLibrary/catalogo?categoria='.$categoria.'&pag='.$pag);
         
         //$this->view->render('catalogo/index');
     }
@@ -163,6 +173,15 @@ class Catalogo extends Controller {
         $modeloCatalogo = new ModeloCatalogo();
         $catalogoDAO = new CatalogoDAO();
 
+        if(isset($_GET['categoria']))
+            $categoria = $_GET['categoria'];
+        else
+            $categoria = 0;
+
+        if(isset($_GET['pag']))
+            $pag = $_GET['pag'];
+        else
+            $pag = 0;
 
         // Si se ha realizado un mehtdo POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -220,11 +239,21 @@ class Catalogo extends Controller {
             $catalogoDAO -> edit($modeloCatalogo);
             }
 
-            header('Location: /SystemLibrary/catalogo');
+            header('Location: /SystemLibrary/catalogo?categoria='.$categoria.'&pag='.$pag);
 
     }
 
     function eliminar(){
+
+        if(isset($_GET['categoria']))
+            $categoria = $_GET['categoria'];
+        else
+            $categoria = 0;
+
+        if(isset($_GET['pag']))
+            $pag = $_GET['pag'];
+        else
+            $pag = 0;
 
         $modeloCatalogo = new ModeloCatalogo();
         $catalogoDAO = new CatalogoDAO();
@@ -237,16 +266,26 @@ class Catalogo extends Controller {
 
         }
 
-        header('Location: /SystemLibrary/catalogo');
+        header('Location: /SystemLibrary/catalogo?categoria='.$categoria.'&pag='.$pag);
     }
 
 
     function setCantPaginas(){
 
+        if(isset($_GET['categoria']))
+            $idCategoria = $_GET['categoria'];
+        else
+            $idCategoria = 0;
+           
+        if(isset($_GET['busqueda']))
+            $busqueda = $_GET['busqueda'];
+        else
+            $busqueda = "";
+
         $catalogoDAO = new CatalogoDAO();
         $modeloCatalogo = new ModeloCatalogo();
 
-        $queryTotalLibros = $catalogoDAO->totalLibros();
+        $queryTotalLibros = $catalogoDAO->totalLibros($idCategoria, $busqueda);
 
         foreach($queryTotalLibros as $cant)
             $totalLibros = $cant['count'];
