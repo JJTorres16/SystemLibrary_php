@@ -179,7 +179,8 @@
                                     <td style="text-align: center;">
                                         <form action="/SystemLibrary/prestamo/devolver" name="formDevolverPrestamo"  method="POST" onsubmit="return confirmaDevolucionDeLibro(this);">
                                             <input type="text" name="txtIdPrestamo" id="txtEstadoPrestamo" value="<?php echo $prestamoEnCurso['idprestamo'] ?>" hidden>
-                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden>     
+                                            <input type="text" name="txtIdLibro" id="txtIdLibro" value="<?php echo $prestamoEnCurso['idlibro'] ?>" hidden>
+                                            <input type="text" name="txtNoControl" id="txtNoControl" value="<?php echo $prestamoEnCurso['alumnonocontrol'] ?>" hidden>     
                                             <button type="submit" class="btn btn-outline-primary btn-sm">Devolver</button>
                                         </form>                           
                                     </td>
