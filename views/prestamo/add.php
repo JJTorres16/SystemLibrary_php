@@ -29,6 +29,11 @@
         $idLibro = $_GET['idLibro'];
         $tipoPrestamo = $_GET['tipo'];
 
+        if($tipoPrestamo == 'sala')
+            $cantDiasPrestamo = 0;
+        else
+            $cantDiasPrestamo = 3;
+
         $contCatalogo = new Catalogo();
         $selectedBook = $contCatalogo->showDetail($idLibro);
 
@@ -66,7 +71,7 @@
             </div>
             <div class="col-md-4">
                 <label for="dateFinPrestamo" class="form-label">Fecha de retorno de libro:</label>
-                <input readonly type="text" class="form-control" id="dateFinPrestamo" name="dateFinPrestamo" value="<?php echo date("d/m/Y", mktime(0, 0, 0, date("m"), date("d") + 3, date("Y"))); ?>" required>
+                <input readonly type="text" class="form-control" id="dateFinPrestamo" name="dateFinPrestamo" value="<?php echo date("d/m/Y", mktime(0, 0, 0, date("m"), date("d") + $cantDiasPrestamo, date("Y"))); ?>" required>
             </div>
             <div class="col-md-12">
                 <label for="areaObservPrestamo" class="form-label">Observaciones:</label>
