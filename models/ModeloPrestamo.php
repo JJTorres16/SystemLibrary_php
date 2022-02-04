@@ -118,7 +118,7 @@
         function comparaFechas(){
             
             //Crear un objeto de tipo DateTime():
-            $fechaActual = date('Y-m-d');
+            $fechaActual = date('d-m-Y');
             $fechaDevolucion = date($this->fecFin);
 
             //$fechaActual = $objDateTime->format('Y-m-d');

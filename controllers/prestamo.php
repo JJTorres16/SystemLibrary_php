@@ -52,12 +52,12 @@ class Prestamo extends Controller{
                 $observaciones = "Sin observaciones";
 
             //Convertimos las fechas dadas en el formulario a formato fecha. Objeto DateTime:
-            $obj_fechaDeInicio = DateTime::createFromFormat('d/m/Y', $text_fechaDeInicio);
-            $obj_fechaDeFin = DateTime::createFromFormat('d/m/Y', $text_fechaDeFin);
+            $fechaDeInicio = date($text_fechaDeInicio);
+            $fechaDeFin = date($text_fechaDeFin);
 
             //Nueva cadena con el formato fecha requerido:
-            $fechaDeInicio = $obj_fechaDeInicio->format("d/m/Y");
-            $fechaDeFin = $obj_fechaDeFin->format("d/m/Y");
+            //$fechaDeInicio = $obj_fechaDeInicio->format("d/m/Y");
+            //$fechaDeFin = $obj_fechaDeFin->format("d/m/Y");
 
             // Asignamos las variables al modeloPrestamo:
             $modeloPrestamo->setIdLibro($idLibro);
