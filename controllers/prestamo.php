@@ -92,7 +92,7 @@ class Prestamo extends Controller{
             } 
 
         } else
-            header ('Location: /SystemLibrary/catalogo');
+            header ('Location: /SystemLibrary/catalogo?noSehizoElPrestamo=0');
 
     }
 
