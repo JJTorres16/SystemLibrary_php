@@ -74,11 +74,22 @@ class CatalogoDAO extends Model{
 
     function totalLibros($idCategoria, $busqueda){
 
-        $query = parent::getConnection()->prepare("SELECT COUNT(idlibros) FROM libros WHERE categoria = ? OR LOWER(nombre) LIKE LOWER(?)");
-        $query->execute(array(
-            $idCategoria,
-            '%'.$busqueda.'%'
-        ));
+        if($busqueda != "" || $idCategoria == 0){
+            $query = parent::getConnection()->prepare("SELECT COUNT(idlibros) FROM libros WHERE categoria = ? OR LOWER(nombre) LIKE LOWER(?)");
+
+            $query->execute(array(
+                $idCategoria,
+                '%'.$busqueda.'%'
+            ));
+
+        } else {
+            $query = parent::getConnection()->prepare("SELECT COUNT(idlibros) FROM libros WHERE categoria = ?");
+            
+            $query->execute(array(
+                $idCategoria,
+            ));
+
+        }
 
         $totalLibros = $query->fetchAll();
 
