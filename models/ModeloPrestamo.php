@@ -119,8 +119,8 @@
             
             //Crear un objeto de tipo DateTime():
             $fechaActual = date('d-m-Y');
-            $fechaDevolucion = date($this->fecFin);
-
+            $fechaDevolucion = $this->cambiaFormatoFecha(date($this->fecFin));
+            
             //$fechaActual = $objDateTime->format('Y-m-d');
             //$fechaDevolucion = $objDateTimeDevolucion->format('Y-m-d');
 
@@ -128,6 +128,15 @@
                 return true;
             else
                 return false;
+        }
+        
+
+        function cambiaFormatoFecha($fecha){
+
+            $formatoActual = date($fecha);
+            $formatoCorregido = date_format(date_create_from_format('Y-m-d', $formatoActual), 'd-m-Y');
+
+            return $formatoCorregido;
         }
     }
 

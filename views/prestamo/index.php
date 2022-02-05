@@ -91,10 +91,13 @@
                             <?php 
     
                                 $controllerPrestamo = new Prestamo();
+                                
                                 $listaPrestamo = $controllerPrestamo->show('En curso');
 
                                 foreach($listaPrestamo as $prestamoEnCurso){
                                     $nombreCompleto = $prestamoEnCurso['alumnonombre'] . ' ' . $prestamoEnCurso['appaterno'] . ' ' . $prestamoEnCurso['apmaterno'];
+                                    $fecInit = $controllerPrestamo->cambiaFormatoFecha($prestamoEnCurso['fecinit']);
+                                    $fecFin = $controllerPrestamo->cambiaFormatoFecha($prestamoEnCurso['fecfin']);
 
                                     $controllerPrestamo->comparaFecha($prestamoEnCurso['idprestamo'], $prestamoEnCurso['fecfin']);
                             
@@ -104,8 +107,8 @@
                                     <th scope="row"><?php echo $prestamoEnCurso['idprestamo']; ?></th>
                                     <td><?php echo $prestamoEnCurso['nombre']; ?></td>
                                     <td><?php echo $nombreCompleto; ?></td>
-                                    <td><?php echo $prestamoEnCurso['fecinit']; ?></td>
-                                    <td><?php echo $prestamoEnCurso['fecfin']; ?></td>
+                                    <td><?php echo $fecInit ?></td>
+                                    <td><?php echo $fecFin ?></td>
                                     <td style="text-align: center"><?php echo $prestamoEnCurso['tipo']; ?></td>
                                     <td style="text-align: center;">
                                         <?php if($prestamoEnCurso['tipo'] == 'casa'){ ?>

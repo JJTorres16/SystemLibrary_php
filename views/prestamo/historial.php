@@ -79,14 +79,16 @@
                 $listaPrestamo = $controllerPrestamo->show('En curso', 'Retrasado');
 
                 foreach($listaPrestamo as $prestamosHistorial){
+                    $fecInit = $controllerPrestamo->cambiaFormatoFecha($prestamosHistorial['fecinit']);
+                    $fecFin = $controllerPrestamo->cambiaFormatoFecha($prestamosHistorial['fecfin']);
             ?>
 
                 <tr>
                     <th scope="row"><?php echo $prestamosHistorial['idprestamo']; ?></th>
                     <td><?php echo $prestamosHistorial['nombre']; ?></td>
                     <td><?php echo $prestamosHistorial['categoria']; ?></td>
-                    <td><?php echo $prestamosHistorial['fecinit']; ?></td>
-                    <td><?php echo $prestamosHistorial['fecfin']; ?></td>
+                    <td><?php echo $fecInit ?></td>
+                    <td><?php echo $fecFin ?></td>
                     <td><?php echo $prestamosHistorial['tipo']; ?></td>
                     <td style="text-align: center;">
                         <?php if($prestamosHistorial['retraso'] == 0){ ?>

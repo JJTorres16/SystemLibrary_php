@@ -163,8 +163,12 @@ class Prestamo extends Controller{
     }
 
 
-    function generaReportePDF($html){
+    function cambiaFormatoFecha($fecha){
 
+        $modeloPrestamo = new ModeloPrestamo();
+        $fechaCorregida = $modeloPrestamo->cambiaFormatoFecha($fecha);
+
+        return $fechaCorregida;
     }
 
     function comparaFecha($idPrestamo, $fecDevolucion){
@@ -172,7 +176,7 @@ class Prestamo extends Controller{
         $prestamo = new ModeloPrestamo();
         $prestamoDAO = new PrestamoDAO();
 
-        $prestamo->setFecFin($fecDevolucion); $prestamo->comparaFechas();
+        $prestamo->setFecFin($fecDevolucion); //$prestamo->comparaFechas();
 
         if($prestamo->comparaFechas())
             $prestamoDAO->cambiaEstadoRetrasado($idPrestamo);

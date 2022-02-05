@@ -64,6 +64,10 @@
                         <a class="nav-link" href="/SystemLibrary/help" tabindex="-1" aria-disabled="true">Ayuda</a>
                     </li>
                 </ul>
+                <span class="navbar-text">
+                    <i class="fas fa-user"></i>
+                    Adriana Velásquez Cortés
+                </span>
             </div>
 
         </div>
